@@ -31,13 +31,13 @@
     background-repeat: no-repeat;
 }
 .logoImageLight {
-    background-image: url('https://www.freeiconspng.com/thumbs/art-icon/art-brush-colors-craft-design-draw-paint-icon--icon-search--12.png');
+    background-image: url('../../static/logoLight.png');
     width: 60%;
     height:60%;
 }
 
 .logoImageDark {
-    background-image: url('https://www.freeiconspng.com/thumbs/art-icon/art-icon-png-artwork-page-coming-soon--1.png');
+    background-image: url('../../static/logoDark.png');
     width: 70%;
     height:70%;
 }

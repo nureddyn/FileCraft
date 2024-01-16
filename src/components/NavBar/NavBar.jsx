@@ -2,7 +2,7 @@ import styles from './NavBar.module.css';
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../pages/App/App';
-import DropDown from '../DropDown/DropDown';
+import DropDownButton from '../DropDown/DropDownButton';
 import ThemeButton from '../ThemeButton/ThemeButton';
 import * as userService from '../../utilities/users-service';
 
@@ -54,21 +54,20 @@ export default function NavBar({ user, setUser }) {
         <div className={theme === "light" ? styles.logoImageLight : styles.logoImageDark}></div>
         <p className={styles.logoName}>Filecraft</p>
       </div>
-      <ThemeButton />
       <div className={styles.headerLinks}>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders'}>Index</Link>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders/new'}>Profile</Link>
       </div>
       <div className={styles.dropdownContainer}>
-        <DropDown user={user && user} isOpen={isDropdownOpen} open={openModal} close={closeModal}  />
+        <DropDownButton user={user && user} isOpen={isDropdownOpen} open={openModal} close={closeModal}  />
         {isDropdownOpen
           ? <div className={styles.dropdown}>
-            {/* Add Profile photo */}
               <div style={{backgroundImage: `url(${photoData})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat'}} className={styles.dropdownPhoto}></div>
               <label className={styles.dropdownLabel} htmlFor="options">{user && user.name}</label>
               <button className={styles.dropdownButton}>Manage Account</button>
               <p className={styles.logoutButton} onClick={handleLogOut}>Log Out</p>
-              <p></p>
+              <p>Change Mode</p>
+              <ThemeButton />
             </div> 
           : ""}
       </div>
