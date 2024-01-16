@@ -1,0 +1,97 @@
+.headerDark, .headerLight {
+    position: fixed;
+    display: flex;
+    top: 0;
+    width: 100%;
+    height: 5em;
+}
+.headerDark {
+    background: #0E0D45;
+    color: white;
+    border: solid black 2px;
+}
+.headerLight {
+    background: grey;
+    color: black;
+    border: solid black 2px;
+}
+
+.headerLinks {
+    display: flex;
+    /* border: solid white 1px; */
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
+    flex-wrap: wrap;
+}
+
+.headerLinkLight {
+    color: black;
+    margin-left: 15%;
+}
+.headerLinkDark {
+    color: white;
+    margin-left: 15%;
+}
+
+.dropdownContainer {
+    
+    width: 10em;
+    /* border: solid white 1px; */
+}
+
+.dropdown {
+    margin-top: 1em;
+    background: white;
+    color: black;
+    height: auto;
+    padding: 1em;
+    /* border: solid black 1px; */
+    border-radius: 20px;
+}
+
+.dropdownPhoto {
+    border: solid black 1px;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    margin-left: 30%;
+}
+
+.dropdownLabel {
+    display: flex;
+    justify-content: center;
+}
+
+.dropdownButton {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: solid white 1px;
+    border-radius: 50px;
+    height: 20%;
+    width: 100%;
+    /* margin-left: 2em; */
+}
+.dropdownButton:hover {
+    opacity: 0.7;
+}
+
+.dropdownButton {
+    border-radius: 20px;
+}
+.dropdownButton:hover {
+    cursor: pointer;
+    border-color: green;
+}
+
+.logoutButton {
+    text-align: center;
+}
+.logoutButton:hover {
+    cursor: pointer;
+    font-weight: 700;
+}

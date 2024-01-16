@@ -1,0 +1,12 @@
+.showDropdown {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: solid white 1px;
+    border-radius: 50px;
+    height: auto;
+    width: auto;
+    /* margin-left: 2em; */
+}

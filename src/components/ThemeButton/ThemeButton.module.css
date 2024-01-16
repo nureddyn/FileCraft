@@ -1,0 +1,38 @@
+.themeButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: solid white 2px; */
+    width: 8em;
+}
+
+.switchButtonLeft {
+    display: flex;
+    justify-content: flex-start;
+    border: solid white 2px;
+    border-top-left-radius: 30%;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    border-top-right-radius: 30%;
+    width: 2.5em;
+    height: 1.3em;
+}
+
+.switchButtonRight {
+    display: flex;
+    justify-content: flex-end;
+    border: solid white 2px;
+    border-top-left-radius: 30%;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    border-top-right-radius: 30%;
+    width: 2.5em;
+    height: 1.3em;
+}
+
+.switchLever {
+    background: white;
+    width: 40%;
+    height: 92%;
+    border-radius: 80%;
+}
