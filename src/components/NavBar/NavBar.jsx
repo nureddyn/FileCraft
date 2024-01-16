@@ -50,6 +50,10 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <div className={theme === "light" ? styles.headerLight : styles.headerDark}>
+      <div className={styles.logo}>
+        <div className={theme === "light" ? styles.logoImageLight : styles.logoImageDark}></div>
+        <p className={styles.logoName}>Filecraft</p>
+      </div>
       <ThemeButton />
       <div className={styles.headerLinks}>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders'}>Index</Link>

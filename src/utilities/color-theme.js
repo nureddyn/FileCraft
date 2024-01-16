@@ -6,8 +6,8 @@ export function useThemeHandler() {
   localStorage.setItem("theme", theme === "light" ? "dark" : "light");
   
   if (theme === "dark") {
-    document.querySelector("body").style.background = "linear-gradient(#5A585A, #090947)";
-  } else document.querySelector("body").style.background = "white";
+    document.querySelector("body").style.backgroundImage = "#00303F";
+  } else document.querySelector("body").style.background = "linear-gradient(#f9f8fd, #9df9ef)";
   return [theme, setTheme];
 };
 
@@ -19,6 +19,6 @@ export function bodyColor(theme, setTheme) {
   }
   else {
     setTheme("dark");
-    document.querySelector("body").style.background = "linear-gradient(#5A585A, #090947)";
+    document.querySelector("body").style.background = "#00303F";
   };
 };

@@ -2,18 +2,49 @@
     position: fixed;
     display: flex;
     top: 0;
+    left: 0;
     width: 100%;
     height: 5em;
 }
 .headerDark {
-    background: #0E0D45;
+    background: #393939;
     color: white;
     border: solid black 2px;
 }
 .headerLight {
-    background: grey;
+    background: #7A9D96;
     color: black;
     border: solid black 2px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 8%;
+    height:80%;
+    /* border: solid black 1px; */
+    margin-right: 1%;
+}
+
+.logoImageLight, .logoImageDark {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.logoImageLight {
+    background-image: url('https://www.freeiconspng.com/thumbs/art-icon/art-brush-colors-craft-design-draw-paint-icon--icon-search--12.png');
+    width: 60%;
+    height:60%;
+}
+
+.logoImageDark {
+    background-image: url('https://www.freeiconspng.com/thumbs/art-icon/art-icon-png-artwork-page-coming-soon--1.png');
+    width: 70%;
+    height:70%;
+}
+
+.logoName {
+    font-weight: 300;
+    font-family: cursive;
 }
 
 .headerLinks {
