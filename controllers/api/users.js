@@ -9,9 +9,21 @@ module.exports = {
 };
 
 function createJWT(user) {
+  const { _id, name, email, photo } = user;
+
   return jwt.sign(
     // data payload
-    { user },
+    { 
+      user: { 
+        _id,
+        name,
+        email,
+        photo: {
+          data: photo.data,
+          contentType: photo.contentType
+        }
+      }
+    },
     process.env.SECRET,
     { expiresIn: '24h' }
   );

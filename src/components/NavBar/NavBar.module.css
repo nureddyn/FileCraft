@@ -46,6 +46,7 @@
     background: white;
     color: black;
     height: auto;
+    width: 120%;
     padding: 1em;
     /* border: solid black 1px; */
     border-radius: 20px;
@@ -54,9 +55,9 @@
 .dropdownPhoto {
     border: solid black 1px;
     border-radius: 50%;
-    width: 3em;
-    height: 3em;
-    margin-left: 30%;
+    width: 8em;
+    height: 4.95em;
+    margin-left: 10%;
 }
 
 .dropdownLabel {

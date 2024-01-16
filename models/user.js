@@ -17,7 +17,8 @@ const userSchema = new Schema({
     trim: true,
     minLength: 3,
     required: true
-  }
+  },
+  photo: { data: Buffer, contentType: String }
 }, {
   timestamps: true,
   toJSON: {
