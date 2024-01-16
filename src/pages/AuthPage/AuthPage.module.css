@@ -1,0 +1,27 @@
+.main {
+    display: flex;
+    height: 35em;
+}
+
+.authDiv {
+    width: 40%;
+    height: 100%;
+}
+
+.welcomeDiv {
+    width: 60%;
+    /* height: 100%; */
+    background-image: url('https://img.freepik.com/free-vector/watercolor-oil-painting-background_52683-106439.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705363200&semt=sph');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #00308F;
+}
+
+.paragraph {
+    width: 60%;
+    font-weight: 500;   
+}
+
+.learnMore:hover {
+    cursor: pointer;
+}
