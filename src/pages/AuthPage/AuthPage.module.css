@@ -1,6 +1,7 @@
 .main {
     display: flex;
     height: 35em;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/027/937/570/large_2x/colorful-abstract-painted-background-oil-painting-on-canvas-fragment-of-artwork-abstract-painting-background-or-texture-ai-generated-free-photo.jpg');
 }
 
 .authDiv {
@@ -11,7 +12,7 @@
 .welcomeDiv {
     width: 60%;
     /* height: 100%; */
-    background-image: url('https://img.freepik.com/free-vector/watercolor-oil-painting-background_52683-106439.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705363200&semt=sph');
+    background-image: url('../../static/watercolor-oil-painting-background_52683-106439.avif');
     background-repeat: no-repeat;
     background-size: cover;
     color: #00308F;
