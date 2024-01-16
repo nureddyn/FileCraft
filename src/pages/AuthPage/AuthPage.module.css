@@ -23,6 +23,20 @@
     font-weight: 500;   
 }
 
-.learnMore:hover {
+.learnMoreHeader {
+    display: flex;
+    justify-content: center;
+    margin-left: -12%;
+}
+
+.learnMoreButton:hover {
     cursor: pointer;
+}
+
+.learnMoreButton {
+    padding-right: 5%;
+}
+
+.learnMore {
+    width: 100%;
 }

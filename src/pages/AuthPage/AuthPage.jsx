@@ -46,18 +46,21 @@ export default function AuthPage({ setUser }) {
               from your Instagram account and much more!
             </p>
           </div>
-          <h3 className={styles.learnMore}
+          <h3 className={styles.learnMoreButton}
             onClick={handlePage}
           >Learn more &#x2192;</h3>
         </div>
       </>
-      : <div>
-          <h1>Learning more</h1>
-          <h3 className={styles.learnMore}
+      : <div className={styles.learnMore}>
+        <div className={styles.learnMoreHeader}>
+          <h3
+            className={styles.learnMoreButton}
             onClick={handlePage}
           >
             &#x2190; Done
           </h3>
+          <h1 className={styles.h1}>What you can do with Filecraft</h1>
+        </div>
         </div>
       }
     </main> 
