@@ -29,7 +29,8 @@ Node.js & Express.js
 MongoDB
 
 
-## Installation
+## Getting Started
+You can see the project's planning here: https://trello.com/b/WzSgoakj/mern-project
 
 1. Clone the repository:
 ```
