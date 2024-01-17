@@ -1,7 +1,7 @@
-import styles from './FunctionList.module.css';
+import styles from './FunctionListPage.module.css';
 import React from 'react'
 
-export default function FunctionList() {
+export default function FunctionListPage() {
   return (
     <main className={styles.main}>
       <div className={styles.function}>
