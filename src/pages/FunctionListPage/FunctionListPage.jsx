@@ -1,9 +1,12 @@
 import styles from './FunctionListPage.module.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../App/App';
+import { Link } from 'react-router-dom';
 import functionalities from '../../models/functionalies';
 
 export default function FunctionListPage() {
-  
+
+  const [theme, setTheme] = useContext(ThemeContext);
   const [functionality, setFunctionality] = useState();
 
   let func;
@@ -12,13 +15,8 @@ export default function FunctionListPage() {
     let title = e.target.innerText;
     let foundFunc = functionalities.find(element => element.title === title);
     setFunctionality(foundFunc)
-    // func = showFunc(functionality);
   };
 
-  // const showFunc = (func) => {
-  //   return [func.title, func.description, func.smallImage];
-  // };
-  
   return (
     <main className={styles.main}>
       <div className={styles.function}>
@@ -26,9 +24,30 @@ export default function FunctionListPage() {
           {/* TODO: Display title dynamically */}
           <h1 className={styles.h1}>{functionality && functionality.title}</h1>
           <p>{functionality && functionality.description}</p>
+          {functionality &&
+            <Link
+              className={theme === 'light' ? styles.linkLight : styles.linkDark}
+              to={'/functions'}
+            >
+              Start &#x2192;
+            </Link>
+          }  
         </div>
-        <div className={styles.functionImageDiv} style={{backgroundImage: `url('${functionality && functionality.smallImage}')`}}></div>
-        <div className={styles.functionPropertiesDiv}>Property list</div>
+        <div
+          className={styles.functionImageDiv}
+          style={{backgroundImage: `url('${functionality && functionality.smallImage}')`}}></div>
+        <div className={styles.functionPropertiesDiv}>
+          <h3>{functionality && functionality.properties[0]}</h3>
+          <ul className={styles.list}>
+            {functionality && functionality.properties.map((elem, i) => {
+              if (i > 0) {
+                return (
+                  <li key={i}>{elem}</li>
+                )
+              }
+            })}
+          </ul>
+        </div>
       </div>
       <div className={styles.options}>
         {/* TODO Display options dynamically */}
