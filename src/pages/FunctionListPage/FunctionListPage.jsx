@@ -1,13 +1,14 @@
 import styles from './FunctionListPage.module.css';
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App/App';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import functionalities from '../../models/functionalies';
 
 export default function FunctionListPage() {
 
   const [theme, setTheme] = useContext(ThemeContext);
   const [functionality, setFunctionality] = useState();
+  const navigate = useNavigate();
 
   let func;
   const handleChange = (e) => {
@@ -15,6 +16,10 @@ export default function FunctionListPage() {
     let title = e.target.innerText;
     let foundFunc = functionalities.find(element => element.title === title);
     setFunctionality(foundFunc)
+  };
+
+  const toFunctionPage = ()=> {
+    navigate('/functions/selected', {state: {title: functionality.title}})
   };
 
   return (
@@ -25,12 +30,7 @@ export default function FunctionListPage() {
           <h1 className={styles.h1}>{functionality && functionality.title}</h1>
           <p>{functionality && functionality.description}</p>
           {functionality &&
-            <Link
-              className={theme === 'light' ? styles.linkLight : styles.linkDark}
-              to={'/functions'}
-            >
-              Start &#x2192;
-            </Link>
+            <div onClick={() => toFunctionPage()}>Start &#x2192;</div>
           }  
         </div>
         <div
