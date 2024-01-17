@@ -6,7 +6,7 @@ import { useThemeHandler } from '../../utilities/color-theme';
 
 // Import the following components
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
+import FunctionList from '../FunctionList/FunctionList';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -24,7 +24,7 @@ function App() {
             <NavBar user={user} setUser={setUser} />
             <h1>App</h1>
             <Routes>
-              <Route path="/orders/new" element={<NewOrderPage />} />
+              <Route path="/functions" element={<FunctionList />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
             </Routes>
           </>

@@ -55,7 +55,7 @@ export default function NavBar({ user, setUser }) {
         <p className={styles.logoName}>Filecraft</p>
       </div>
       <div className={styles.headerLinks}>
-        <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders'}>Index</Link>
+        <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/functions'}>Index</Link>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders/new'}>Profile</Link>
       </div>
       <div className={styles.dropdownContainer}>

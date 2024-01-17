@@ -53,7 +53,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 40%;
-    margin-left: 30%;
+    margin-left: 15%;
     flex-wrap: wrap;
 }
 
@@ -67,9 +67,13 @@
 }
 
 .dropdownContainer {
-    
+    /* display: flex; */
+    /* align-self: center; */
     width: 10em;
     /* border: solid white 1px; */
+    margin-top: 2%;
+    margin-right: 5%;
+
 }
 
 .dropdown {
