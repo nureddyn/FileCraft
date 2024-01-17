@@ -1,5 +1,6 @@
 import styles from './FunctionListPage.module.css';
-import React from 'react'
+import React from 'react';
+import functionalities from '../../models/functionalies';
 
 export default function FunctionListPage() {
   return (
@@ -15,7 +16,15 @@ export default function FunctionListPage() {
       </div>
       <div className={styles.options}>
         {/* TODO Display options dynamically */}
-        <div className={styles.optionEach}>
+        {functionalities.map((func, i) => {
+          return (
+            <div className={styles.optionEach}>
+              <div className={styles.optionTitle}><h3 className={styles.h3}>{func.title}</h3></div>
+              <div className={styles.optionImage} style={{backgroundImage: `url('${func.image}')`}}></div>
+            </div>
+          )  
+        })}
+        {/* <div className={styles.optionEach}>
           <div className={styles.optionTitle}><h3 className={styles.h3}>Option x</h3></div>
           <div className={styles.optionImage}>Image</div>
         </div>
@@ -26,7 +35,7 @@ export default function FunctionListPage() {
         <div className={styles.optionEach}>
           <div className={styles.optionTitle}><h3 className={styles.h3}>Option x</h3></div>
           <div className={styles.optionImage}>Image</div>
-        </div>
+        </div> */}
       </div>
     </main>
   )

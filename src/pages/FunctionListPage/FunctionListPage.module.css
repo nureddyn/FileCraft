@@ -31,12 +31,12 @@
 }
 
 .functionPropertiesDiv {
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 33%;
 }
 
 .options {
-    border: solid blue 1px;
+    /* border: solid blue 1px; */
     width: 30%;
     /* padding: 5%; */
 }
@@ -62,4 +62,6 @@
     display: flex;
     border: solid black 1px;
     width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
 }

@@ -39,7 +39,7 @@ export default function AuthPage({ setUser }) {
           </button>
         </div>
         <div className={styles.welcomeDiv}>
-          <h1>Convert your files easly with Filecraft</h1>
+          <h1>Convert your files easily with Filecraft</h1>
           <div className={styles.paragraph}>
             <p>
               With Filecraft you can convert document files, images, add filters, get photos
