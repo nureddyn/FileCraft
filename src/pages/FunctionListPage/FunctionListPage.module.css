@@ -1,21 +1,21 @@
 .main {
     display: flex;
     justify-content: flex-start;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 100%;
     height: 30em;
 }
 
 .function {
     display: flex;
-    border: solid purple 1px;
+    /* border: solid purple 1px; */
     width: 80%;
     /* padding: 5%; */
     left: 0;
 }
 
 .functionTitleDiv {
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 33%;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .functionImageDiv {
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 33%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -42,7 +42,7 @@
 }
 
 .options {
-    /* border: solid blue 1px; */
+    border: solid black 2px;
     width: 30%;
     /* padding: 5%; */
 }
@@ -52,9 +52,14 @@
     width: 100%;
 }
 
+.optionEach:hover {
+    cursor: pointer;
+    background: lightgreen;
+}
+
 .optionTitle {
     display: flex;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 40%;
 }
 
@@ -66,7 +71,7 @@
 
 .optionImage {
     display: flex;
-    border: solid black 1px;
+    border-left: solid black 1px;
     width: 60%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -81,4 +86,9 @@
 
 .list {
     list-style: none;
+}
+
+.startButton:hover {
+    cursor: pointer;
+    color: gold;
 }

@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 module.exports = {
     create,
     login,
-    checkToken
+    checkToken,
+    craft
 };
 
 function createJWT(user) {
@@ -28,6 +29,17 @@ function createJWT(user) {
     { expiresIn: '24h' }
   );
 }
+
+// Perform file craft
+async function craft(req, res) {
+  try {
+    const file = req.body;
+    console.log(file);
+    res.json(file);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
 
 async function create(req, res) {
   try {

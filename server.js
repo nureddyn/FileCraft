@@ -27,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 // Middleware to verify token and assign user object of payload to req.user.
 app.use(require('./config/checkToken'));
 
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));

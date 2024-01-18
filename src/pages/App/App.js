@@ -1,13 +1,17 @@
 import './App.css';
 import { useState, createContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import { useThemeHandler } from '../../utilities/color-theme';
 
 // Import the following components
 import AuthPage from '../AuthPage/AuthPage';
 import FunctionListPage from '../FunctionListPage/FunctionListPage';
-import FunctionPage from '../FunctionPage/FunctionPage';
+
+import ImageConverterPage from '../ImageConverterPage/ImageConverterPage';
+import ImageFilterPage from '../ImageFilterPage/ImageFilterPage';
+import FileSharingPage from '../FileSharingPage/FileSharingPage';
+
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -26,8 +30,13 @@ function App() {
             <h1>App</h1>
             <Routes>
               <Route path="/functions" element={<FunctionListPage />} />
-              <Route path="/functions/selected" element={<FunctionPage />} />
+
+              <Route path="/functions/ImageConverter" element={<ImageConverterPage />} />
+              <Route path="/functions/ImageFilters" element={<ImageFilterPage />} />
+              <Route path="/functions/FileSharing" element={<FileSharingPage />} />
+
               <Route path="/orders" element={<OrderHistoryPage />} />
+              <Route path="/*" element={<Navigate to="/functions" />} />
             </Routes>
           </>
           :

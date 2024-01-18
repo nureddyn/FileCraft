@@ -18,8 +18,10 @@ export default function FunctionListPage() {
     setFunctionality(foundFunc)
   };
 
-  const toFunctionPage = ()=> {
-    navigate('/functions/selected', {state: {title: functionality.title}})
+  const toFunctionPage = () => {
+    let route = functionality.title.split(' ').join('');
+    console.log(route);
+    navigate(`/functions/${route}`, {state: {title: functionality.title}})
   };
 
   return (
@@ -30,7 +32,7 @@ export default function FunctionListPage() {
           <h1 className={styles.h1}>{functionality && functionality.title}</h1>
           <p>{functionality && functionality.description}</p>
           {functionality &&
-            <div onClick={() => toFunctionPage()}>Start &#x2192;</div>
+            <div className={styles.startButton} onClick={() => toFunctionPage()}>Start &#x2192;</div>
           }  
         </div>
         <div
