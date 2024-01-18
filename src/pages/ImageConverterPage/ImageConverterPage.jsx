@@ -15,11 +15,15 @@ export default function FunctionPage() {
   const handleChange = (event) => {
     setInputFile(event.target.files[0]);
 
-    setFileType(event.target.files[0].name.slice(
-      event.target.files[0].name.indexOf('.')
-    ));
+    // Get the file type
+    let str = event.target.files[0].name;
+    let index = str.indexOf('.');
+    let subString = str.slice(index + 1);
+
+    setFileType(subString);
   };
 
+  // Convert the image buffer in a readable image file
   function arrayBufferToBase64(buffer) {
     const binary = new Uint8Array(buffer);
     const bytes = Array.from(binary);
@@ -32,20 +36,21 @@ export default function FunctionPage() {
   async function handleFunction() {
     if (inputFile && convertTo && convertTo !== fileType) {
       const craftType = title.split(" ").join("");
+      console.log(craftType);
       const response = await usersService.generateCraft(inputFile, craftType, convertTo);
 
       console.log(response.convertedImage.data);
       const responseData = response.convertedImage.data;
       const base64String = arrayBufferToBase64(responseData);
 
-      resultImageRef.current.src = 'data:image/jpeg;base64,' + base64String;
+      resultImageRef.current.src = `data:image/${convertTo};base64,` + base64String;
 
     } else if (inputFile && convertTo && convertTo === fileType) {
       alert("Cannot convert to the same type of file");
     }
   }
 
-  const options = [".jpg", ".png", ".webp", ".tiff", ".giff", ".svg", ".raw"];
+  const options = ["jpg", "png", "webp", "tiff", "giff", "svg", "raw"];
   const selectedRef = useRef(null);
   
   const handleSelect = () => {

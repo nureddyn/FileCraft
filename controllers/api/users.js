@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 const bcrypt = require('bcrypt');
-const sharp = require('sharp');
+const imageConverter = require('../../features/imageConverter');
 
 module.exports = {
     create,
@@ -45,38 +45,13 @@ async function craft(req, res) {
     const convertTo = req.body.convertTo;
 
     // Work on the file
-    const convertedImage = await performCraft(file, craftType, convertTo);
+    const convertedImage = await imageConverter.performCraft(file, craftType, convertTo);
 
     // Send the converted image back to the client
     res.json({ message: 'File uploaded and converted successfully', convertedImage });
   } catch (err) {
     console.error(err);
     res.status(500).json('Internal Server Error');
-  }
-}
-
-async function performCraft(file, craftType, convertTo) {
-  try {
-    // Convert image using sharp based on the specified conversion type
-    if (convertTo === '.jpg') {
-      const convertedBuffer = await sharp(file.data)
-        .toFormat('jpeg')
-        .toBuffer();
-      
-      return convertedBuffer;
-    } else if (convertTo === '.png') {
-      // Add additional conversion types as needed
-      const convertedBuffer = await sharp(file.data)
-        .toFormat('png')
-        .toBuffer();
-
-      return convertedBuffer;
-    } else {
-      throw new Error('Unsupported conversion type');
-    }
-  } catch (error) {
-    console.error(error);
-    throw new Error('Error during image conversion');
   }
 }
 

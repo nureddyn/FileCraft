@@ -3,7 +3,6 @@ import { getToken } from "./users-service";
 // This is the base path of the Express route we'll define
 const BASE_URL = '/api/users';
 
-// TODO: FIX
 export function generateCraft(file, craftType, convertTo) {
   const formData = new FormData();
   formData.append('file', file);
