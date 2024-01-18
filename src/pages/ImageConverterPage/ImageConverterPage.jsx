@@ -2,76 +2,39 @@ import styles from './ImageConverterPage.module.css';
 import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Compress from "browser-image-compression";
-
 import * as usersService from '../../utilities/users-service';
 
 export default function FunctionPage() {
   const location = useLocation();
   const title = location.state.title;
 
-  const [file, setFile] = useState();
-  const [compressedFile, setCompressedFile] = useState(null);
+  const [fileType, setFileType] = useState("");
+  const [toConvert, setToConvert] = useState("");
+  const [inputFile, setInputFile] = useState(null);
 
   const handleChange = (event) => {
-    let fileToCompress = event.target.files[0];
-    setCompressedFile(fileToCompress);
-    // Compression config
-    const options = {
-      // As the key specify the maximum size
-      // Leave blank for infinity
-      maxSizeMB: 1,
-      // Use webworker for faster compression with
-      // the help of threads
-      useWebWorker: true
-    };
+    setInputFile(event.target.files[0]);
 
-    // Initialize compression
-    // First argument is the file object from the input
-    // Second argument is the options object with the
-    // config
-    // Compress(fileToCompress, options)
-    //   .then((compressedBlob) => {
-    //     // Compressed file is of Blob type
-    //     // You can drop off here if you want to work with a Blob file
-    //     console.log(compressedBlob);
-    //     setCompressedFile(compressedBlob);
-    //     // setCompressedFile({
-    //     //   imageUrl: URL.createObjectURL(compressedBlob)
-    //     // });
-
-    //     // // If you want to work with the File
-    //     // // Let's convert it here, by adding a couple of attributes
-    //     // compressedBlob.lastModifiedDate = new Date();
-
-    //     // // Conver the blob to file
-    //     // const convertedBlobFile = new File([compressedBlob], file.name, {
-    //     //   type: file.type,
-    //     //   lastModified: Date.now()
-    //     // });
-
-    //     // Here you are free to call any method you are gonna use to upload your file example uploadToCloudinaryUsingPreset(convertedBlobFile)
-    //   })
-    //   .catch((e) => {
-    //     // Show the user a toast message or notification that something went wrong while compressing file
-    //     console.log('Errour');
-    //   });
+    setFileType(event.target.files[0].name.slice(
+      event.target.files[0].name.indexOf('.')
+    ));
   };
 
-  const inputRef = useRef(null);
-
-
-  
-
   async function handleFunction() {
-    if (compressedFile) {
-      // const compressedFile = compress(inputRef.current.value);
-      // console.log(inputRef.current.files[0]);
-      const response = await usersService.generateCraft(compressedFile);
+    if (inputFile && toConvert && toConvert !== fileType) {
+      const craftType = title.split(" ").join("");
+      const response = await usersService.generateCraft(inputFile, craftType);
 
       console.log(response);
-    }
+    } else alert("Cannot convert to the same type of file");
   }
+
+  const options = [".jpg", ".png", ".webp", ".tiff", ".giff", ".svg", ".raw"];
+  const selectedRef = useRef(null);
+  
+  const handleSelect = () => {
+    setToConvert(selectedRef.current.value)
+  };
 
   return (
     <>
@@ -81,9 +44,17 @@ export default function FunctionPage() {
         <div className={styles.fileSelectorDiv}>
 
               <h3>Select a file or drop it here</h3>
-              <input ref={inputRef} type="file" onChange={handleChange} />
+              <input type="file" onChange={handleChange} />
 
-              <p>{file && file.name}</p>
+              <label htmlFor='select'>Select type to convert</label>
+              <select ref={selectedRef} onClick={handleSelect}>
+                {options.map((option, i) => {
+                  return (
+                    <option key={i} value={option}>{option}</option>
+                  )
+                })}
+              </select>
+
               <button onClick={handleFunction}>Convert File</button>
 
         </div>

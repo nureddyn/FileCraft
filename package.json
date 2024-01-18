@@ -24,6 +24,7 @@
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "serve-favicon": "^2.5.0",
+    "sharp": "^0.33.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

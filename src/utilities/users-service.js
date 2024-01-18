@@ -1,7 +1,7 @@
 import * as usersAPI from './users-api';
 
-export async function generateCraft(file) {
-  const result = await usersAPI.generateCraft(file);
+export async function generateCraft(file, craftType) {
+  const result = await usersAPI.generateCraft(file, craftType);
   return result; 
 }
 

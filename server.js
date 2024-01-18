@@ -27,8 +27,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 // Middleware to verify token and assign user object of payload to req.user.
 app.use(require('./config/checkToken'));
 
-// app.use(require('express-fileupload'));
-
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 

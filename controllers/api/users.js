@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 const bcrypt = require('bcrypt');
+const sharp = require('sharp');
 
 module.exports = {
     create,
@@ -29,7 +30,7 @@ function createJWT(user) {
     { expiresIn: '24h' }
   );
 }
-const fileUpload = require('express-fileupload');
+
 // Perform file craft
 async function craft(req, res) {
   try {
@@ -40,8 +41,10 @@ async function craft(req, res) {
 
     // Access the uploaded file from req.files
     const file = req.files.file;
+    const craftType = req.body.craftType;
 
-    console.log(file);
+    // Work on the file
+    performCraft(file, craftType);
 
     res.json({ message: 'File uploaded successfully' });
   } catch (err) {
@@ -49,6 +52,11 @@ async function craft(req, res) {
     res.status(500).json('Internal Server Error');
   }
 }
+
+
+function performCraft(file, craftType) {
+  console.log(craftType);
+};
 
 async function create(req, res) {
   try {
