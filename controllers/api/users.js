@@ -42,21 +42,43 @@ async function craft(req, res) {
     // Access the uploaded file from req.files
     const file = req.files.file;
     const craftType = req.body.craftType;
+    const convertTo = req.body.convertTo;
 
     // Work on the file
-    performCraft(file, craftType);
+    const convertedImage = await performCraft(file, craftType, convertTo);
 
-    res.json({ message: 'File uploaded successfully' });
+    // Send the converted image back to the client
+    res.json({ message: 'File uploaded and converted successfully', convertedImage });
   } catch (err) {
     console.error(err);
     res.status(500).json('Internal Server Error');
   }
 }
 
+async function performCraft(file, craftType, convertTo) {
+  try {
+    // Convert image using sharp based on the specified conversion type
+    if (convertTo === '.jpg') {
+      const convertedBuffer = await sharp(file.data)
+        .toFormat('jpeg')
+        .toBuffer();
+      
+      return convertedBuffer;
+    } else if (convertTo === '.png') {
+      // Add additional conversion types as needed
+      const convertedBuffer = await sharp(file.data)
+        .toFormat('png')
+        .toBuffer();
 
-function performCraft(file, craftType) {
-  console.log(craftType);
-};
+      return convertedBuffer;
+    } else {
+      throw new Error('Unsupported conversion type');
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error during image conversion');
+  }
+}
 
 async function create(req, res) {
   try {

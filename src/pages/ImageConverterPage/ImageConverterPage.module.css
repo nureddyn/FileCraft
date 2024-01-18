@@ -26,3 +26,8 @@
     flex-wrap: wrap;
     margin-left: 10%;
 }
+
+.resultImg {
+    width: 60%;
+    height: 60%;
+}

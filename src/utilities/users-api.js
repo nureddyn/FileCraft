@@ -4,10 +4,11 @@ import { getToken } from "./users-service";
 const BASE_URL = '/api/users';
 
 // TODO: FIX
-export function generateCraft(file, craftType) {
+export function generateCraft(file, craftType, convertTo) {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('craftType', craftType);
+  formData.append('convertTo', convertTo);
   return sendRequest(`${BASE_URL}/craft`, 'POST', formData);
 }
 
