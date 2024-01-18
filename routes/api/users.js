@@ -4,6 +4,8 @@ const usersCtrl = require('../../controllers/api/users');
 // require the authorization middleware function
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
+const fileUpload = require('express-fileupload');
+router.use(fileUpload());
 
 // GET /api/users/check-token
 // Insert ensureLoggedIn on all routes that need protecting

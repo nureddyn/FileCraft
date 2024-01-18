@@ -42,10 +42,12 @@ export default function NavBar({ user, setUser }) {
     const userPhotoData = decodedToken.user.photo.data;
 
     // Convert the binary image data to a Data URL
-    const uint8Array = new Uint8Array(userPhotoData.data);
-    const blob = new Blob([uint8Array], { type: userPhotoData.contentType });
-    const dataUrl = URL.createObjectURL(blob);
-    setPhotoData(dataUrl);
+    if (userPhotoData && userPhotoData.data) {
+      const uint8Array = new Uint8Array(userPhotoData.data);
+      const blob = new Blob([uint8Array], { type: userPhotoData.contentType });
+      const dataUrl = URL.createObjectURL(blob);
+      setPhotoData(dataUrl);
+    }
   }, [])
 
   return (

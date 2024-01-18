@@ -26,9 +26,17 @@ async function sendRequest(url, method = 'GET', payload = null) {
   // Fetch accepts an options object as the 2nd argument
   // used to include a data payload, set headers, etc.
   const options = { method };
+
+
   if (payload) {
-    options.headers = { 'Content-Type': 'application/json' };
-    options.body = JSON.stringify(payload);
+    if (payload instanceof FormData) {
+      // If payload is FormData, set content type to multipart/form-data
+      options.body = payload;
+    } else {
+      // If payload is not FormData, set content type to application/json
+      options.headers = { 'Content-Type': 'application/json' };
+      options.body = JSON.stringify(payload);
+    }
   }
 
   const token = getToken();

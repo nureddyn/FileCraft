@@ -29,17 +29,26 @@ function createJWT(user) {
     { expiresIn: '24h' }
   );
 }
-
+const fileUpload = require('express-fileupload');
 // Perform file craft
 async function craft(req, res) {
   try {
-    const file = req.body;
+    // Ensure the request has the uploaded file
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).json('No file uploaded');
+    }
+
+    // Access the uploaded file from req.files
+    const file = req.files.file;
+
     console.log(file);
-    res.json(file);
+
+    res.json({ message: 'File uploaded successfully' });
   } catch (err) {
-    res.status(400).json(err);
+    console.error(err);
+    res.status(500).json('Internal Server Error');
   }
-};
+}
 
 async function create(req, res) {
   try {
