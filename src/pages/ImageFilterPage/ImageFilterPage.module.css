@@ -28,12 +28,7 @@
 .fileEditorDiv {
     display: flex;
     width: 100%;
-    height: 25em;
-}
-
-.imageDiv {
-    border: solid black 1px;
-    width: 80%;
+    height: 28em;
 }
 
 .filtersDiv {
@@ -41,9 +36,59 @@
     width: 20%;
 }
 
+.imageDiv {
+    display: flex;
+    justify-content: center;
+    border: solid black 1px;
+    width: 80%;
+    height: 100%;
+    
+}
+
 .image {
     width:80%;
-    height: 80%;
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
+    border: solid black 1px;
+}
+
+.continueButtonDisabled, .continueButtonEnabled, .goBackButton {
+    all: unset;
+    font-size: 1.2em;
+    font-weight: 900;
+}
+
+.continueButtonDisabled {
+    color: grey;
+}
+
+.continueButtonEnabled:hover {
+    cursor: pointer;
+    color: green;
+}
+
+.goBackButton:hover {
+    cursor: pointer;
+    color: blue;
+}
+
+
+.filtersList {
+    /* border: solid orange 2px; */
+    width: 10em;
+    height: 90%;
+    /* padding-left: 20%; */
+    padding-right: 0;
+}
+
+.filterButton {
+    /* border: solid purple 2px; */
+    /* width: 10em; */
+    height: 16%;
+}
+
+.filterButton:hover {
+    cursor: pointer;
+    background: lightgreen;
 }

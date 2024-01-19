@@ -27,11 +27,24 @@ export default function ImageFilterPage() {
     reader.readAsDataURL(selectedFile);
   };
 
+  const previewRef = useRef(null);
   const handleChange = () => {
     currentPage === pageType.fileSelector && fileRef.current.value
-      ? setCurrentPage(pageType.fileEditor)
-      : setCurrentPage(pageType.fileSelector);
+    ? setCurrentPage(pageType.fileEditor)
+    : setCurrentPage(pageType.fileSelector);
+
+    // Trying to delete previous reviewImage
+    // if (currentPage === pageType.fileSelector && fileRef.current.value) {
+    //   setCurrentPage(pageType.fileEditor)
+    // } else {
+    //   setCurrentPage(pageType.fileSelector);
+    //   if (previewRef && previewRef.current && previewRef.current.style) {
+    //     previewRef.current.style.backgroundImage = 'none';
+    //   } 
+    // }
   };
+
+  const filters = ["Grayscale", "Sepia", "Blur", "Sharpen", "Brightness and Contrast", "Custom Kernel Convolution"];
 
   return (
     <>
@@ -42,12 +55,24 @@ export default function ImageFilterPage() {
             <div className={styles.inputDiv}>
               <h3>Select a file or drop it here</h3>
               <input ref={fileRef} type="file" onChange={handleFileChange} />
-              <p>{file && file.name}</p>
-              <button onClick={handleChange}>Start</button>
+              {/* <p>{file && file.name}</p> */}
+
+                <button
+                  className={fileRef && fileRef.current && fileRef.current.value
+                    ? styles.continueButtonEnabled
+                    : styles.continueButtonDisabled
+                  }
+                  onClick={handleChange}
+                >
+                  Start crafting &#x2192;
+                </button>
+
             </div>
             <div className={styles.previewDiv}>
               {imagePreview &&
-                <div className={styles.imagePreview}
+                <div
+                  ref={previewRef}
+                  className={styles.imagePreview}
                   style={{backgroundImage: `url('${imagePreview}')`}}
                 />
               }
@@ -56,6 +81,14 @@ export default function ImageFilterPage() {
         ) : (
           <div className={styles.fileEditorDiv}>
             <div className={styles.imageDiv}>
+              <div>
+                <button 
+                  className={styles.goBackButton}
+                  onClick={handleChange}
+                >
+                  &#x2190; Select another image
+                </button>
+              </div>
               {imagePreview && (
                 <div
                   className={styles.image}
@@ -64,7 +97,13 @@ export default function ImageFilterPage() {
               )}
             </div>
             <div className={styles.filtersDiv}>
-              <button onClick={handleChange}>Select another image</button>
+              <div className={styles.filtersList}>
+                {filters.map((filter, i) => {
+                  return (
+                    <div className={styles.filterButton} key={i}>{filter}</div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         )}
