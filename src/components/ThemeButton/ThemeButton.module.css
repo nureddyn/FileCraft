@@ -38,3 +38,7 @@
     height: 92%;
     border-radius: 80%;
 }
+
+.switchLever:hover {
+    cursor: pointer;   
+}
