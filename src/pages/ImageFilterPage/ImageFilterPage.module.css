@@ -33,13 +33,13 @@
 
 .filtersDiv {
     border: solid black 1px;
-    width: 20%;
+    width: 12em;
 }
 
 .imageDiv {
     display: flex;
     justify-content: center;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 80%;
     height: 100%;
     
@@ -50,7 +50,7 @@
     height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
-    border: solid black 1px;
+    /* border: solid black 1px; */
 }
 
 .continueButtonDisabled, .continueButtonEnabled, .goBackButton {
@@ -75,20 +75,39 @@
 
 
 .filtersList {
-    /* border: solid orange 2px; */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     width: 10em;
     height: 90%;
-    /* padding-left: 20%; */
     padding-right: 0;
 }
 
 .filterButton {
-    /* border: solid purple 2px; */
-    /* width: 10em; */
     height: 16%;
+    cursor: pointer;
+    /* border-bottom: solid 1px green;
+    border-width: 10%;
+    border-left: 10%;
+    transition: 150ms; */
 }
 
-.filterButton:hover {
-    cursor: pointer;
-    background: lightgreen;
+
+.filterButton:hover, .filterButton:focus {
+    background: #A3F0EB;
 }
+
+.filterButton.active {
+    background-color: #4ABDAC;
+}
+
+.filterButton::after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    bottom: 0;
+    height: 1px;
+    background: green;
+}
+

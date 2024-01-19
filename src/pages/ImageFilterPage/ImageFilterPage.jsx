@@ -1,8 +1,11 @@
 import styles from './ImageFilterPage.module.css';
 import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import DEFAULT_OPTIONS from '../../models/filters';
+import Slider from '../../components/Slider/Slider';
 
 export default function ImageFilterPage() {
+
   const location = useLocation();
   const title = location.state.title;
   const [file, setFile] = useState();
@@ -44,7 +47,26 @@ export default function ImageFilterPage() {
     // }
   };
 
-  const filters = ["Grayscale", "Sepia", "Blur", "Sharpen", "Brightness and Contrast", "Custom Kernel Convolution"];
+  // Functionality to add filters
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+  const [options, setOptions] = useState(DEFAULT_OPTIONS);
+  const selectedOption = options[selectedOptionIndex];
+
+  const handleSliderChange = ({ target }) => {
+    setOptions(prevOptions => {
+      return prevOptions.map((option, index) => {
+        if (index !== selectedOptionIndex) return option;
+        return { ...option, value: target.value };
+      })
+    })
+  };
+
+  const getImageStyle = () => {
+    const filters = options.map(option => {
+      return `${option.property}(${option.value}${option.unit})`
+    });
+    return { filter: filters.join(' ') }
+  };
 
   return (
     <>
@@ -81,7 +103,7 @@ export default function ImageFilterPage() {
         ) : (
           <div className={styles.fileEditorDiv}>
             <div className={styles.imageDiv}>
-              <div>
+              <div className={styles.goBackDiv}>
                 <button 
                   className={styles.goBackButton}
                   onClick={handleChange}
@@ -92,18 +114,27 @@ export default function ImageFilterPage() {
               {imagePreview && (
                 <div
                   className={styles.image}
-                  style={{ backgroundImage: `url('${imagePreview}')` }}
+                  style={{backgroundImage: `url('${imagePreview}')`, ...getImageStyle()}}
                 />
               )}
             </div>
             <div className={styles.filtersDiv}>
               <div className={styles.filtersList}>
-                {filters.map((filter, i) => {
+                {options.map((option, i) => {
                   return (
-                    <div className={styles.filterButton} key={i}>{filter}</div>
+                    <div
+                      className={`${styles.filterButton} ${i === selectedOptionIndex ? styles.active : ''}`}
+                      key={i}
+                      onClick={() => setSelectedOptionIndex(i)}
+                    >{option.name}</div>
                   )
                 })}
               </div>
+              <Slider 
+              min={selectedOption.range.min}
+              max={selectedOption.range.max}
+              value={selectedOption.value}
+              handleChange={handleSliderChange} />
             </div>
           </div>
         )}

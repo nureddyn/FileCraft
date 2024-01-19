@@ -1,0 +1,9 @@
+.sliderContainer {
+    grid-area: slider;
+    background: #6ADCCF;
+}
+
+.slider {
+    width: 100%;
+    cursor: pointer;
+}
