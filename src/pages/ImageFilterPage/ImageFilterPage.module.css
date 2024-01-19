@@ -6,6 +6,25 @@
     margin-left: 10%;
 } */
 
+.fileSelectorDiv {
+    display: flex;
+}
+
+.inputDiv {
+    width: 80%;
+}
+
+.previewDiv {
+    width: 20%;
+}
+
+.imagePreview {
+    width:100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .fileEditorDiv {
     display: flex;
     width: 100%;
@@ -20,4 +39,9 @@
 .filtersDiv {
     border: solid black 1px;
     width: 20%;
+}
+
+.image {
+    width:80%;
+    height: 80%;
 }
