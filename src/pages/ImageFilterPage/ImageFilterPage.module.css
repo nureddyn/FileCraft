@@ -5,3 +5,19 @@
     flex-wrap: wrap;
     margin-left: 10%;
 } */
+
+.fileEditorDiv {
+    display: flex;
+    width: 100%;
+    height: 25em;
+}
+
+.imageDiv {
+    border: solid black 1px;
+    width: 80%;
+}
+
+.filtersDiv {
+    border: solid black 1px;
+    width: 20%;
+}
