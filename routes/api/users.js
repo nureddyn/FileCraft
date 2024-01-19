@@ -18,4 +18,7 @@ router.post('/login', usersCtrl.login);
 // Perform function
 router.post('/craft', usersCtrl.craft);
 
+// Save new files
+router.post('/craft/save', usersCtrl.saveFile);
+
 module.exports = router;

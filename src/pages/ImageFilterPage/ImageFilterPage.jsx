@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import DEFAULT_OPTIONS from '../../models/filters';
 import Slider from '../../components/Slider/Slider';
+import * as usersService from '../../utilities/users-service';
 
 export default function ImageFilterPage() {
 
@@ -19,15 +20,17 @@ export default function ImageFilterPage() {
   const fileRef = useRef(null);
 
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
+    if (event.target.files[0]) {
+      const selectedFile = event.target.files[0];
+      setFile(selectedFile);
 
-    // Use FileReader to read the selected file and set imagePreview state
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImagePreview(reader.result);
-    };
-    reader.readAsDataURL(selectedFile);
+      // Use FileReader to read the selected file and set imagePreview state
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
   };
 
   const previewRef = useRef(null);
@@ -68,6 +71,64 @@ export default function ImageFilterPage() {
     return { filter: filters.join(' ') }
   };
 
+  // TODO: Save image in db
+  async function handleSave() {
+    if (imagePreview) {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+  
+      if (previewRef && previewRef.current) {
+        // Set canvas dimensions to match image
+        canvas.width = previewRef.current.clientWidth;
+        canvas.height = previewRef.current.clientHeight;
+      }
+  
+      // Apply filters to the canvas
+      const filters = options.map(option => `${option.property}(${option.value}${option.unit})`);
+      context.filter = filters.join(' ');
+  
+      // Draw the original image on the canvas
+      const img = new Image();
+      img.src = imagePreview;
+  
+      // Wrap the image loading logic in a Promise
+      const imageLoadPromise = new Promise(resolve => {
+        img.onload = () => {
+          context.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve();
+        };
+      });
+  
+      // Wait for the image to load before proceeding
+      await imageLoadPromise;
+  
+      // Get the base64 encoded data URL of the canvas
+      const filteredImageData = canvas.toDataURL('image/jpeg');
+
+      // Convert base64 data to a Blob
+      const imageToSend = dataURItoBlob(filteredImageData);
+  
+      // Save or send the filteredImageData to your database
+      const response = await usersService.saveImage(imageToSend);
+    }
+  }
+
+  // Function to convert data URI to Blob
+  function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ab], { type: mimeString });
+  }
+
+
   return (
     <>
       <h1>{title}</h1>
@@ -103,18 +164,27 @@ export default function ImageFilterPage() {
         ) : (
           <div className={styles.fileEditorDiv}>
             <div className={styles.imageDiv}>
-              <div className={styles.goBackDiv}>
+              <div className={styles.optionsDiv}>
+                <h2>Options</h2>
                 <button 
                   className={styles.goBackButton}
                   onClick={handleChange}
                 >
                   &#x2190; Select another image
                 </button>
+
+                <button 
+                  className={styles.saveButton}
+                  onClick={handleSave}
+                >
+                  Save Changes
+                </button>
+
               </div>
               {imagePreview && (
-                <div
+                <img src={imagePreview}
                   className={styles.image}
-                  style={{backgroundImage: `url('${imagePreview}')`, ...getImageStyle()}}
+                  style={getImageStyle()}
                 />
               )}
             </div>

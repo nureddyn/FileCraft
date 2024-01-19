@@ -48,12 +48,12 @@
 .image {
     width:80%;
     height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
+    /* background-size: contain;
+    background-repeat: no-repeat; */
     /* border: solid black 1px; */
 }
 
-.continueButtonDisabled, .continueButtonEnabled, .goBackButton {
+.continueButtonDisabled, .continueButtonEnabled, .goBackButton, .saveButton {
     all: unset;
     font-size: 1.2em;
     font-weight: 900;
@@ -68,11 +68,19 @@
     color: green;
 }
 
+/* .optionsDiv {
+    border: solid black 1px;
+} */
+
 .goBackButton:hover {
     cursor: pointer;
     color: blue;
 }
 
+.saveButton:hover {
+    cursor: pointer;
+    color: blue;
+}
 
 .filtersList {
     display: flex;

@@ -3,6 +3,12 @@ import { getToken } from "./users-service";
 // This is the base path of the Express route we'll define
 const BASE_URL = '/api/users';
 
+export async function saveImage(imageToSend) {
+  const formData = new FormData();
+  formData.append('file', imageToSend);
+  return sendRequest(`${BASE_URL}/craft/save`, 'POST', formData);
+};
+
 export function generateCraft(file, craftType, convertTo) {
   const formData = new FormData();
   formData.append('file', file);

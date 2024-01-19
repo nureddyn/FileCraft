@@ -7,7 +7,8 @@ module.exports = {
     create,
     login,
     checkToken,
-    craft
+    craft,
+    saveFile
 };
 
 function createJWT(user) {
@@ -29,6 +30,18 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: '24h' }
   );
+}
+
+async function saveFile(req, res) {
+  try {
+    // Ensure the request has the uploaded file
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).json('No file uploaded');
+    }
+    const file = req.files.file;
+    console.log(file);
+    // res.json(file);
+  } catch (err) {}
 }
 
 // Perform file craft
