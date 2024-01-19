@@ -11,6 +11,7 @@ import FunctionListPage from '../FunctionListPage/FunctionListPage';
 import ImageConverterPage from '../ImageConverterPage/ImageConverterPage';
 import ImageFilterPage from '../ImageFilterPage/ImageFilterPage';
 import FileSharingPage from '../FileSharingPage/FileSharingPage';
+import MyCraftsPage from '../MyCraftsPage/MyCraftsPage';
 
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -30,6 +31,8 @@ function App() {
             <h1>App</h1>
             <Routes>
               <Route path="/functions" element={<FunctionListPage />} />
+              <Route path="/saved" element={<MyCraftsPage />} />
+
 
               <Route path="/functions/ImageConverter" element={<ImageConverterPage />} />
               <Route path="/functions/ImageFilters" element={<ImageFilterPage />} />

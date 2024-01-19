@@ -1,0 +1,14 @@
+.groupList {
+    border: solid black 1px;
+    height: 300px;
+}
+
+.group {
+    border: solid purple 1px;
+    height: 50%;    
+}
+
+.itemList {
+    display: flex;
+    border: solid blue 1px; 
+}

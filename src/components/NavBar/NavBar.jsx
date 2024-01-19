@@ -58,6 +58,7 @@ export default function NavBar({ user, setUser }) {
       </div>
       <div className={styles.headerLinks}>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/functions'}>Start crafting</Link>
+        <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/saved'}>My crafts</Link>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders/new'}>Profile</Link>
       </div>
       <div className={styles.dropdownContainer}>
