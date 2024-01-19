@@ -110,6 +110,7 @@ export default function ImageFilterPage() {
   
       // Save or send the filteredImageData to your database
       const response = await usersService.saveImage(imageToSend);
+      alert(response.message);
     }
   }
 

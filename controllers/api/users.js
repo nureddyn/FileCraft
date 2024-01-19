@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
+const Image = require('../../models/image');
 const bcrypt = require('bcrypt');
 const imageConverter = require('../../features/imageConverter');
 
@@ -39,9 +40,32 @@ async function saveFile(req, res) {
       return res.status(400).json('No file uploaded');
     }
     const file = req.files.file;
-    console.log(file);
+    // console.log(file);
+
+    // Create a new image document
+    const newImage = new Image({
+      imageName: file.name,
+      imageData: {
+        data: file.data,
+        contentType: file.mimetype
+      }
+    });
+
+    // Save the image to MongoDB
+    const savedImage = await newImage.save();
+
+    // Respond with the saved image details
+    res.status(201).json({
+      success: true,
+      message: 'Image saved successfully',
+      data: savedImage
+    });
+
     // res.json(file);
-  } catch (err) {}
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
 }
 
 // Perform file craft
