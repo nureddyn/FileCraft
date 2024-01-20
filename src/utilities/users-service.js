@@ -64,3 +64,11 @@ export function getUser() {
 export function logOut() {
   localStorage.removeItem('token');
 }
+
+// Convert the image buffer in a readable image file
+export function arrayBufferToBase64(buffer) {
+  const binary = new Uint8Array(buffer);
+  const bytes = Array.from(binary);
+  const binaryString = String.fromCharCode.apply(null, bytes);
+  return btoa(binaryString);
+}

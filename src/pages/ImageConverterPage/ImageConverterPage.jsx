@@ -23,25 +23,19 @@ export default function FunctionPage() {
     setFileType(subString);
   };
 
-  // Convert the image buffer in a readable image file
-  function arrayBufferToBase64(buffer) {
-    const binary = new Uint8Array(buffer);
-    const bytes = Array.from(binary);
-    const binaryString = String.fromCharCode.apply(null, bytes);
-    return btoa(binaryString);
-  }
-
   const resultImageRef = useRef(null);
 
   async function handleFunction() {
     if (inputFile && convertTo && convertTo !== fileType) {
       const craftType = title.split(" ").join("");
-      console.log(craftType);
-      const response = await usersService.generateCraft(inputFile, craftType, convertTo);
+      // console.log(craftType);
 
-      console.log(response.convertedImage.data);
+      // Send image to be converted in server side 
+      const response = await usersService.generateCraft(inputFile, craftType, convertTo);
+      console.log(response);
+      // console.log(response.convertedImage.data);
       const responseData = response.convertedImage.data;
-      const base64String = arrayBufferToBase64(responseData);
+      const base64String = usersService.arrayBufferToBase64(responseData);
 
       resultImageRef.current.src = `data:image/${convertTo};base64,` + base64String;
 

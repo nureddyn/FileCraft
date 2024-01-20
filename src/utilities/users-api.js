@@ -5,7 +5,7 @@ const BASE_URL = '/api/users';
 
 export async function getFiles(userId) {
   const formData = new FormData();
-  formData.append('file', userId);
+  formData.append('userId', userId);
   return sendRequest(`${BASE_URL}/files`, 'POST', formData);
 }
 
