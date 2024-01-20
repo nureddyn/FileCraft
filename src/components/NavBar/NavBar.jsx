@@ -14,17 +14,6 @@ export default function NavBar({ user, setUser }) {
     setUser(null);
   }
 
-  // return (
-  //   <nav>
-  //     <h1>{user && user.name}</h1>
-  //     <Link to="/orders">Order History</Link>
-  //     &nbsp; | &nbsp;
-  //     <Link to="/orders/new">New Order</Link>
-  //     &nbsp;&nbsp;<span>Welcome, {user.name}</span>
-  //     &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-  //   </nav>
-  // )
-
   const [theme, setTheme] = useContext(ThemeContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -70,7 +59,7 @@ export default function NavBar({ user, setUser }) {
               <button className={styles.dropdownButton}>Manage Account</button>
               <p className={styles.logoutButton} onClick={handleLogOut}>Log Out</p>
               <p>Change Mode</p>
-              <ThemeButton />
+              <ThemeButton theme={theme} setTheme={setTheme} />
             </div> 
           : ""}
       </div>

@@ -9,7 +9,7 @@
 
 .group {
     border: solid purple 1px;
-    height: 100%;    
+    height: 100%;
 }
 
 .itemList {
@@ -21,9 +21,8 @@
 }
 
 .image {
-    width: 100%;
+    width: 20%;
     height: 40%;
     background-size: contain;
     background-repeat: no-repeat;
-    /* background-repeat: no-repeat; */
 }

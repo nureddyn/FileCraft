@@ -19,10 +19,6 @@
     width: 33%;
 }
 
-.startButton:hover {
-    cursor: pointer;
-}
-
 @media screen and (max-width: 690px) {
     .h1 {
         font-size: 100%;
@@ -88,7 +84,13 @@
     list-style: none;
 }
 
+
+.startButton {
+    font-weight: 600;
+    width: 50%;
+    margin-left: 22%;
+}
 .startButton:hover {
     cursor: pointer;
-    color: gold;
+    background: #4ABDAC;
 }

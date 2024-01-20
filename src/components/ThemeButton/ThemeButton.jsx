@@ -1,10 +1,8 @@
 import styles from './ThemeButton.module.css';
-import { useContext } from "react";
-import { ThemeContext } from '../../pages/App/App';
 import { bodyColor } from "../../utilities/color-theme";
 
-export default function ThemeButton() {
-  const [theme, setTheme] = useContext(ThemeContext);
+export default function ThemeButton({theme, setTheme}) {
+  // const [theme, setTheme] = useContext(ThemeContext);
 
   return (
       <div className={styles.themeButtonContainer}>

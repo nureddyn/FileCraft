@@ -12,6 +12,7 @@ import ImageConverterPage from '../ImageConverterPage/ImageConverterPage';
 import ImageFilterPage from '../ImageFilterPage/ImageFilterPage';
 import FileSharingPage from '../FileSharingPage/FileSharingPage';
 import MyCraftsPage from '../MyCraftsPage/MyCraftsPage';
+import DocumentConverterPage from '../DocumentConverterPage/DocumentConverterPage';
 
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -36,6 +37,8 @@ function App() {
 
               <Route path="/functions/ImageConverter" element={<ImageConverterPage />} />
               <Route path="/functions/ImageFilters" element={<ImageFilterPage />} />
+              <Route path="/functions/DocumentConverter" element={<DocumentConverterPage />} />
+
               <Route path="/functions/FileSharing" element={<FileSharingPage />} />
 
               <Route path="/orders" element={<OrderHistoryPage />} />

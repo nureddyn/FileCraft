@@ -13,7 +13,7 @@ export default function MyCraftsPage() {
         const userId = parsedData.user._id;
 
         const filesData = await usersService.getFiles(userId);
-        // console.log(filesData);
+        console.log(filesData);
 
         if (filesData) {
           // filesData.images.map((image) => {
@@ -24,10 +24,16 @@ export default function MyCraftsPage() {
             imageData: `data:${image.imageData.contentType};base64,${usersService.arrayBufferToBase64(image.imageData.data.data)}`,
           }));
           // console.log(processedImages);
+          
+          const processedDocuments = filesData.docs.map((doc) => ({
+            ...doc,
+            docImage: "📄",
+            docName: doc.docFileName,
+          }))
 
           setFiles([
             { groupName: 'Images', files: processedImages },
-            { groupName: 'Documents', files: filesData.docs },
+            { groupName: 'Documents', files: processedDocuments },
           ]);
         }
       } catch (error) {
@@ -46,9 +52,18 @@ export default function MyCraftsPage() {
           <div key={index1} className={styles.group}>
             <h2>{group.groupName}</h2>
             <div className={styles.itemList}>
-              {group.files.map((file, index2) => (
-                <div className={styles.image} key={index2} style={{backgroundImage: `url('${file.imageData}')`}}></div>
-              ))}
+              {group.files.map((file, index2) => {
+                if (group.groupName === 'Images') {
+                  return (
+                    <div key={index2} className={styles.image} key={index2} style={{backgroundImage: `url('${file.imageData}')`}}></div>
+                  )
+                } else {
+                  return (
+                    <div key={index2} >{file.docImage}</div>
+                  )
+                }
+
+              })}
             </div>
           </div>
         ))}

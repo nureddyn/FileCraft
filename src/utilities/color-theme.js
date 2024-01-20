@@ -5,9 +5,10 @@ export function useThemeHandler() {
 
   localStorage.setItem("theme", theme === "light" ? "light" : "dark");
   
+  // Change background for: `url('../static/colorful-abstract.jpg')`
   if (theme === "dark") {
     document.querySelector("body").style.backgroundImage = "#00303F";
-  } else document.querySelector("body").style.background = "linear-gradient(#f9f8fd, #9df9ef)";
+  } else document.querySelector("body").style.backgroundImage = "linear-gradient(#f9f8fd, #9df9ef)";
   return [theme, setTheme];
 };
 
@@ -15,7 +16,7 @@ export function useThemeHandler() {
 export function bodyColor(theme, setTheme) {
   if (theme === "dark") {
     setTheme("light")
-    document.querySelector("body").style.background = "white";
+    document.querySelector("body").style.background = "linear-gradient(#f9f8fd, #9df9ef)";
   }
   else {
     setTheme("dark");

@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+}
+
+.fileSelectorDiv {
+    /* display: flex; */
+    border: solid black 1px;
+    width: 80%;
+}
+
+.resultDiv {
+    border: solid black 1px;
+    width: 20%;
+}
+
+.prevImage {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%;
+}
+
+.galleryList {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: 10%;
+}
+
+.resultImg {
+    width: 60%;
+    height: 60%;
+}
