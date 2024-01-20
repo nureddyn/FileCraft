@@ -107,9 +107,11 @@ export default function ImageFilterPage() {
 
       // Convert base64 data to a Blob
       const imageToSend = dataURItoBlob(filteredImageData);
+
+      const userId = usersService.getUser()._id;
   
       // Save or send the filteredImageData to your database
-      const response = await usersService.saveImage(imageToSend);
+      const response = await usersService.saveImage(imageToSend, userId);
       alert(response.message);
     }
   }

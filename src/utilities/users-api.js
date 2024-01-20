@@ -9,9 +9,10 @@ export async function getFiles(userId) {
   return sendRequest(`${BASE_URL}/files`, 'POST', formData);
 }
 
-export async function saveImage(imageToSend) {
+export async function saveImage(imageToSend, userId) {
   const formData = new FormData();
   formData.append('file', imageToSend);
+  formData.append('userId', userId);
   return sendRequest(`${BASE_URL}/craft/save`, 'POST', formData);
 };
 

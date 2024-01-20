@@ -5,8 +5,8 @@ export async function getFiles(userId) {
   return result;
 }
 
-export async function saveImage(imageToSend) {
-  const result = await usersAPI.saveImage(imageToSend);
+export async function saveImage(imageToSend, userId) {
+  const result = await usersAPI.saveImage(imageToSend, userId);
   return result;
 };
 

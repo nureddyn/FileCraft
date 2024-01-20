@@ -37,9 +37,10 @@ function createJWT(user) {
 
 async function getFiles(req, res) {
   try {
-    const userId = req.body.userId; // Assuming you send the userId in the request body
-    const images = await Image.find({ userId }); // Find images for the specified userId
-    const docs = await DocFile.find({ userId }); // Find documents for the specified userId
+    // TODO: find by Id (there is an error here)
+    const userId = req.body.userId;
+    const images = await Image.find({ userId });
+    const docs = await DocFile.find({ userId });
 
     const dataToSend = { images, docs };
     res.json(dataToSend);
@@ -72,10 +73,11 @@ async function saveFile(req, res) {
       return res.status(400).json('No file uploaded');
     }
     const file = req.files.file;
-    // console.log(file);
+    const userId = req.body.userId;
 
     // Create a new image document
     const newImage = new Image({
+      userId: userId,
       imageName: file.name,
       imageData: {
         data: file.data,
