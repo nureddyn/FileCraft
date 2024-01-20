@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../../models/user');
 const Image = require('../../models/image');
+const DocFile = require('../../models/docFile');
 const bcrypt = require('bcrypt');
 const imageConverter = require('../../features/imageConverter');
 
@@ -9,7 +10,8 @@ module.exports = {
     login,
     checkToken,
     craft,
-    saveFile
+    saveFile,
+    getFiles,
 };
 
 function createJWT(user) {
@@ -32,6 +34,36 @@ function createJWT(user) {
     { expiresIn: '24h' }
   );
 }
+
+async function getFiles(req, res) {
+  try {
+    const userId = req.body.userId; // Assuming you send the userId in the request body
+    const images = await Image.find({ userId }); // Find images for the specified userId
+    const docs = await DocFile.find({ userId }); // Find documents for the specified userId
+
+    const dataToSend = { images, docs };
+    res.json(dataToSend);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+// async function getFiles(req, res) {
+//   try {
+//     console.log(req.body);
+//     // Image.findById({_id: req.body._id})
+//     //   .then((images) => {
+//     //     DocFile.findById({_id: req.body._id})
+//     //       .then((docs) => {
+//     //         const dataToSend = {images: images, docs: docs};
+//     //         console.log(dataToSend)
+
+//     //         res.json(dataToSend);
+//     //       })
+//     //   })
+//   } catch(err) {}
+// }
 
 async function saveFile(req, res) {
   try {

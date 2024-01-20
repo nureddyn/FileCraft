@@ -1,5 +1,10 @@
 import * as usersAPI from './users-api';
 
+export async function getFiles(userId) {
+  const result = await usersAPI.getFiles(userId);
+  return result;
+}
+
 export async function saveImage(imageToSend) {
   const result = await usersAPI.saveImage(imageToSend);
   return result;

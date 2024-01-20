@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const imageSchema = new Schema({
+const docFileSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-  imageName: {type: String, required: true},
-  imageData: { data: Buffer, contentType: String }
+  docFileName: {type: String, required: true},
+  docFileData: { data: Buffer, contentType: String } // type of field ?????
   }, {
   timestamps: true,
   toJSON: {
@@ -17,10 +17,10 @@ const imageSchema = new Schema({
     }
   }
 });
-imageSchema.pre('save', async function(next) {
-  // 'this' is the image doc
+docFileSchema.pre('save', async function(next) {
+  // 'this' is the docFile doc
   if (!this.isModified('name')) return next();
   return next();
 });
 
-module.exports = mongoose.model('Image', imageSchema);
+module.exports = mongoose.model('DocFile', docFileSchema);

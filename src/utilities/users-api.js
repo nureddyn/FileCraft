@@ -3,6 +3,12 @@ import { getToken } from "./users-service";
 // This is the base path of the Express route we'll define
 const BASE_URL = '/api/users';
 
+export async function getFiles(userId) {
+  const formData = new FormData();
+  formData.append('file', userId);
+  return sendRequest(`${BASE_URL}/files`, 'POST', formData);
+}
+
 export async function saveImage(imageToSend) {
   const formData = new FormData();
   formData.append('file', imageToSend);

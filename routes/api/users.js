@@ -11,6 +11,7 @@ router.use(fileUpload());
 // Insert ensureLoggedIn on all routes that need protecting
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 
+
 // POST /api/users
 router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
@@ -20,5 +21,8 @@ router.post('/craft', usersCtrl.craft);
 
 // Save new files
 router.post('/craft/save', usersCtrl.saveFile);
+
+// GET Saved files
+router.post('/files', usersCtrl.getFiles);
 
 module.exports = router;

@@ -1,8 +1,31 @@
 import styles from './MyCraftsPage.module.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import * as userService from '../../utilities/users-service';
 
 export default function MyCraftsPage() {
 
+
+  const [data, setData] = useState();
+  useEffect(()=> {
+
+    const fetchData = async () => {
+      try {
+        const jsonString = atob(localStorage.getItem('token').split('.')[1]);
+        const parsedData = JSON.parse(jsonString);
+        const userId = parsedData.user._id;
+
+        const filesData = await userService.getFiles(userId);
+        setData(filesData);
+      } catch (error) {
+        console.error('Error fetching files data:', error);
+      }
+    };
+
+    fetchData();
+
+  }, []);
+
+  console.log(data);
   const savedFiles = [
     {
       groupName: 'a',
