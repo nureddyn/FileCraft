@@ -20,7 +20,6 @@ export default function FunctionListPage() {
 
   const toFunctionPage = () => {
     let route = functionality.title.split(' ').join('');
-    console.log(route);
     navigate(`/functions/${route}`, {state: {title: functionality.title}})
   };
 

@@ -90,19 +90,34 @@ async function saveFile(req, res) {
     }
     const file = req.files.file;
     const userId = req.body.userId;
+    const imageId = req.body.imageId;
 
-    // Create a new image document
-    const newImage = new Image({
-      userId: userId,
-      imageName: file.name,
-      imageData: {
-        data: file.data,
-        contentType: file.mimetype
-      }
-    });
-
-    // Save the image to MongoDB
-    const savedImage = await newImage.save();
+    let savedImage;
+    if (imageId === 'null') {
+      // Create a new image document
+      const newImage = new Image({
+        userId: userId,
+        imageName: file.name,
+        imageData: {
+          data: file.data,
+          contentType: file.mimetype
+        }
+      });
+      // Save the image to MongoDB
+      savedImage = await newImage.save();
+    } else {
+      // Update the existing image document
+      savedImage = await Image.findByIdAndUpdate(
+        imageId,
+        {
+          imageData: {
+            data: file.data,
+            contentType: file.mimetype
+          }
+        },
+        { new: true }
+      );
+    }
 
     // Respond with the saved image details
     res.status(201).json({

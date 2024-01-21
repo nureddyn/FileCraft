@@ -71,6 +71,7 @@ export default function ImageFilterPage() {
     return { filter: filters.join(' ') }
   };
 
+  const [imageId, setImageId] = useState();
   // TODO: Save image in db
   async function handleSave() {
     if (imagePreview) {
@@ -110,8 +111,14 @@ export default function ImageFilterPage() {
 
       const userId = usersService.getUser()._id;
   
-      // Save or send the filteredImageData to your database
-      const response = await usersService.saveImage(imageToSend, userId);
+      let response;
+      // Save or send the filteredImageData to database
+      if (!imageId) { 
+        response = await usersService.saveImage(imageToSend, userId);
+        response && response.data && setImageId(response.data._id);
+      } else {
+        response = await usersService.saveImage(imageToSend, userId, imageId);
+      }
       alert(response.message);
     }
   }

@@ -64,6 +64,8 @@ export default function MyCraftsPage() {
                     <div className={styles.imageDiv}>
                       <div key={index2} className={styles.image} style={{backgroundImage: `url('${file.imageData}')`}}></div>
                       <div onClick={() => handleDelete(file._id)} className={styles.deleteButton}>Delete</div>
+                      <div className={styles.deleteButton}>Continue editing</div>
+
                     </div>
                   )
                 } else {
