@@ -44,6 +44,12 @@ export default function MyCraftsPage() {
     fetchData();
   }, []);
 
+  async function handleDelete (fileId) {
+    const response = await usersService.deleteFile(fileId);
+    alert(response.message);
+    window.location.reload()
+  };
+
   return (
     <div className={styles.pageContainer}>
       <h1>My Crafts</h1>
@@ -55,7 +61,10 @@ export default function MyCraftsPage() {
               {group.files.map((file, index2) => {
                 if (group.groupName === 'Images') {
                   return (
-                    <div key={index2} className={styles.image} key={index2} style={{backgroundImage: `url('${file.imageData}')`}}></div>
+                    <div className={styles.imageDiv}>
+                      <div key={index2} className={styles.image} style={{backgroundImage: `url('${file.imageData}')`}}></div>
+                      <div onClick={() => handleDelete(file._id)} className={styles.deleteButton}>Delete</div>
+                    </div>
                   )
                 } else {
                   return (

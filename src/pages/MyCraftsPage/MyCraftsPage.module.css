@@ -17,12 +17,26 @@
     justify-content: flex-start;
     border: solid blue 1px;
     height: 100%;
-    width: 100%; 
+    width: 100%;
+}
+
+.imageDiv {
+    width: 20%;
+    padding-right: 2%;
 }
 
 .image {
-    width: 20%;
+    width: 100%;
     height: 40%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+}
+
+.deleteButton {
+    border: solid black 1px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background: #4ABDAC;
 }

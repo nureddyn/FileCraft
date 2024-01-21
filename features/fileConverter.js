@@ -1,5 +1,7 @@
 const sharp = require('sharp');
 const mammoth = require('mammoth');
+
+
 const { exec } = require('child_process');
 
 const bodyParser = require('body-parser');
@@ -76,28 +78,29 @@ async function documentConverter(file, convertTo) {
     // else if (convertTo === 'pdf' &&
     //   file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
 
-    //   const inputFilePath = 'input.' + file.name.split('.').pop();
-    //   const outputFilePath = 'output.pdf';
+    //     // Convert DOCX to HTML using mammoth
+    //   const { value } = await mammoth.extractRawText({ arrayBuffer: file.data });
 
-    //   require('fs').writeFileSync(inputFilePath, file.data);
-
-    //   const pandocCommand = `pandoc ${inputFilePath} -o ${outputFilePath}`;
-    //   exec(pandocCommand, (error, stdout, stderr) => {
-    //     if (error) {
-    //       console.error(`Error converting to PDF: ${stderr}`);
-    //     } else {
-    //       console.log(`Conversion successful. Output PDF: ${outputFilePath}`);
-    //     }
-
-    //     require('fs').unlinkSync(inputFilePath);
+    //   // Generate PDF from HTML using html-pdf
+    //   const pdfBuffer = await new Promise((resolve, reject) => {
+    //     const options = { format: 'Letter' }; // Adjust the format as needed
+    //     pdf.create(value, options).toBuffer((err, buffer) => {
+    //       if (err) {
+    //         reject(err);
+    //       } else {
+    //         resolve(buffer);
+    //       }
+    //     });
     //   });
 
-    //   // Return the converted content (not just the file name)
-    //   // return require('fs').readFileSync(outputFilePath, 'utf-8');
-    //   return outputFilePath;
-    // } else {
-    //   throw new Error('Unsupported conversion type or file format.');
-    // }
+    //   // Return the PDF content
+    //   return { content: pdfBuffer, type: 'pdf', extension: 'pdf' };
+
+
+    // } 
+    else {
+      throw new Error('Unsupported conversion type or file format.');
+    }
   } catch (error) {
     console.error('Conversion error:', error);
     throw error;

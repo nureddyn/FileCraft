@@ -25,4 +25,6 @@ router.post('/craft/save', usersCtrl.saveFile);
 // GET Saved files
 router.post('/files', usersCtrl.getFiles);
 
+router.post('/files/delete', usersCtrl.deleteFile);
+
 module.exports = router;

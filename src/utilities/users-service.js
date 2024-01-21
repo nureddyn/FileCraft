@@ -1,5 +1,10 @@
 import * as usersAPI from './users-api';
 
+export async function deleteFile(fileId) {
+  const result = await usersAPI.deleteFile(fileId);
+  return result;
+}
+
 export async function getFiles(userId) {
   const result = await usersAPI.getFiles(userId);
   return result;

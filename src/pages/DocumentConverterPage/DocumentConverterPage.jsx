@@ -55,14 +55,28 @@ export default function DocumentConverterPage() {
 
       const uint8Array = new Uint8Array(responseData);
 
-      const blob = new Blob([uint8Array], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-
       const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'converted.docx';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      
+        
+      if (response.convertedFile.type === 'docx') {
+
+        const blob = new Blob([uint8Array], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        link.href = URL.createObjectURL(blob);
+
+        link.download = 'converted.docx';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else if (response.convertedFile.type === 'pdf') {
+        
+        const blob = new Blob([uint8Array], { type: 'application/pdf' });
+        link.href = URL.createObjectURL(blob);
+        
+        link.download = 'converted.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
       // const base64String = usersService.arrayBufferToBase64(responseData);
 
       resultImageRef.current.innerHTML = '📄';
@@ -109,12 +123,12 @@ export default function DocumentConverterPage() {
           <h1 className={styles.resultImg} ref={resultImageRef}></h1>
           <h4 className={styles.message} ref={messageRef}></h4>
           {
-            <button 
-              className={styles.saveButton}
-              // onClick={handleSave}
-            >
-              Save Changes
-            </button>
+            // <button 
+            //   className={styles.saveButton}
+            //   // onClick={handleSave}
+            // >
+            //   Save Changes
+            // </button>
           }
         </div>
 

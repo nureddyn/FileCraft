@@ -12,6 +12,7 @@ module.exports = {
     craft,
     saveFile,
     getFiles,
+    deleteFile,
 };
 
 function createJWT(user) {
@@ -33,6 +34,21 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: '24h' }
   );
+}
+
+async function deleteFile(req, res) {
+  try {
+    const fileId = req.body.fileId;
+    Image.findByIdAndDelete(fileId)
+    .then(doc => {
+      doc 
+      ? res.json({message: 'File removed successfully'})
+      : res.json({message: 'File not found'});
+    })
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 }
 
 async function getFiles(req, res) {
