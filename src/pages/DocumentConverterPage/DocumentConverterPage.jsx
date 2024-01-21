@@ -37,16 +37,18 @@ export default function DocumentConverterPage() {
   };
 
   const resultImageRef = useRef(null);
+  const messageRef = useRef(null);
 
   async function handleFunction() {
     if (inputFile && convertTo && convertTo !== fileType && options.includes(fileType)) {
-      console.log('yes');
-      // const craftType = title.split(" ").join("");
+      const craftType = title.split(" ").join("");
       // console.log(craftType);
+      // console.log(convertTo);
 
       // Send image to be converted in server side 
-      // const response = await usersService.generateCraft(inputFile, craftType, convertTo);
-      // console.log(response);
+      const response = await usersService.generateCraft(inputFile, craftType, convertTo);
+      console.log(response);
+      messageRef.current.innerHTML = response.message;
       // // console.log(response.convertedImage.data);
       // const responseData = response.convertedImage.data;
       // const base64String = usersService.arrayBufferToBase64(responseData);
@@ -77,7 +79,7 @@ export default function DocumentConverterPage() {
 
               <label htmlFor='select'>Select type to convert</label>
               <select ref={selectedRef} onClick={handleSelect}>
-                <option disabled selected></option>
+                <option></option>
                 
                 {options.map((option, i) => {
                   return (
@@ -93,6 +95,7 @@ export default function DocumentConverterPage() {
         <div className={styles.resultDiv}>
           {/* Display result based on the function result */}
           <h1 className={styles.resultImg} ref={resultImageRef}></h1>
+          <h4 className={styles.message} ref={messageRef}></h4>
         </div>
 
       </main>

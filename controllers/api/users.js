@@ -3,7 +3,7 @@ const User = require('../../models/user');
 const Image = require('../../models/image');
 const DocFile = require('../../models/docFile');
 const bcrypt = require('bcrypt');
-const imageConverter = require('../../features/imageConverter');
+const fileConverter = require('../../features/fileConverter');
 
 module.exports = {
     create,
@@ -109,17 +109,16 @@ async function craft(req, res) {
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).json('No file uploaded');
     }
-
     // Access the uploaded file from req.files
     const file = req.files.file;
     const craftType = req.body.craftType;
     const convertTo = req.body.convertTo;
 
     // Work on the file
-    const convertedImage = await imageConverter.performCraft(file, craftType, convertTo);
+    const convertedFile = await fileConverter.performCraft(file, craftType, convertTo);
 
     // Send the converted image back to the client
-    res.json({ message: 'File uploaded and converted successfully', convertedImage });
+    res.json({ message: 'File converted successfully', convertedFile });
   } catch (err) {
     console.error(err);
     res.status(500).json('Internal Server Error');
