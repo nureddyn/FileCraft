@@ -8,6 +8,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
+const bodyParser = require('body-parser');
+
 // Configure to use port 3001 instead of 3000 during
 // development to avoid collision with React's dev server
 const port = process.env.PORT || 3001;
@@ -22,6 +24,8 @@ app.use(express.json());
 // to serve from the production 'build' folder
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
+
+app.use(bodyParser.json());
 
 // WARNING: Put this before /api/users
 // Middleware to verify token and assign user object of payload to req.user.

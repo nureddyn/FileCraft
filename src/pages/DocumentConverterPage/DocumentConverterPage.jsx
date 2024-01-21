@@ -47,10 +47,22 @@ export default function DocumentConverterPage() {
 
       // Send image to be converted in server side 
       const response = await usersService.generateCraft(inputFile, craftType, convertTo);
-      console.log(response);
+
       messageRef.current.innerHTML = response.message;
-      // // console.log(response.convertedImage.data);
-      // const responseData = response.convertedImage.data;
+      // console.log(response);
+      const responseData = response.convertedFile.content.data;
+      // console.log(responseData);
+
+      const uint8Array = new Uint8Array(responseData);
+
+      const blob = new Blob([uint8Array], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'converted.docx';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
       // const base64String = usersService.arrayBufferToBase64(responseData);
 
       resultImageRef.current.innerHTML = '📄';
@@ -96,6 +108,14 @@ export default function DocumentConverterPage() {
           {/* Display result based on the function result */}
           <h1 className={styles.resultImg} ref={resultImageRef}></h1>
           <h4 className={styles.message} ref={messageRef}></h4>
+          {
+            <button 
+              className={styles.saveButton}
+              // onClick={handleSave}
+            >
+              Save Changes
+            </button>
+          }
         </div>
 
       </main>
