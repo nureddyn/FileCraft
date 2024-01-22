@@ -1,9 +1,16 @@
-.main {
+.mainDark, .mainLight {
     display: flex;
     justify-content: flex-start;
     /* border: solid black 1px; */
     width: 100%;
     height: 30em;
+}
+.mainLight {
+    color: black;
+}
+
+.mainDark {
+    color: white;
 }
 
 .function {
@@ -38,19 +45,31 @@
 }
 
 .options {
-    border: solid black 2px;
+    /* border: solid black 2px; */
     width: 30%;
     /* padding: 5%; */
 }
 
-.optionEach {
+.optionEachLight, .optionEachDark {
     display: flex;
     width: 100%;
+    cursor: pointer;
+    border-radius: 50px;    
 }
 
-.optionEach:hover {
-    cursor: pointer;
+.optionEachLight.active {
+    background-color: #4ABDAC;
+}
+
+.optionEachDark.active {
+    background-color: #4257A2;
+}
+
+.optionEachLight:hover {
     background: #4ABDAC;
+}
+.optionEachDark:hover {
+    background: #4257A2;
 }
 
 .optionTitle {
@@ -68,7 +87,7 @@
 .optionImage {
     display: flex;
     border-left: solid black 1px;
-    width: 60%;
+    width: 21%;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -85,12 +104,17 @@
 }
 
 
-.startButton {
+.startButtonLight, .startButtonDark {
+    cursor: pointer;
     font-weight: 600;
     width: 50%;
     margin-left: 22%;
+    border-radius: 50px;
 }
-.startButton:hover {
-    cursor: pointer;
+.startButtonLight:hover {
     background: #4ABDAC;
+}
+
+.startButtonDark:hover {
+    background: #4257A2;
 }

@@ -11,7 +11,9 @@ export default function FunctionListPage() {
   const navigate = useNavigate();
 
   let func;
-  const handleChange = (e) => {
+  const handleChange = (e, i) => {
+    setSelectedOptionIndex(i);
+
     setFunctionality(e.target.innerHTML);
     let title = e.target.innerText;
     let foundFunc = functionalities.find(element => element.title === title);
@@ -23,15 +25,20 @@ export default function FunctionListPage() {
     navigate(`/functions/${route}`, {state: {title: functionality.title}})
   };
 
+
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+
   return (
-    <main className={styles.main}>
+    <main className={theme === "light" ? styles.mainLight : styles.mainDark}>
       <div className={styles.function}>
         <div className={styles.functionTitleDiv}>
           {/* TODO: Display title dynamically */}
           <h1 className={styles.h1}>{functionality && functionality.title}</h1>
           <p>{functionality && functionality.description}</p>
           {functionality &&
-            <div className={styles.startButton} onClick={() => toFunctionPage()}>Start &#x2192;</div>
+            <div
+            className={theme === "light" ? styles.startButtonLight : styles.startButtonDark}
+            onClick={() => toFunctionPage()}>Start &#x2192;</div>
           }  
         </div>
         <div
@@ -54,7 +61,13 @@ export default function FunctionListPage() {
         {/* TODO Display options dynamically */}
         {functionalities.map((func, i) => {
           return (
-            <div key={i} onClick={(e) => handleChange(e)} className={styles.optionEach}>
+            <div
+              key={i}
+              onClick={(e) => handleChange(e, i)}
+              className={theme === "light"
+                ? `${styles.optionEachLight} ${i === selectedOptionIndex ? styles.active : ''}`
+                : `${styles.optionEachDark} ${i === selectedOptionIndex ? styles.active : ''}`}
+            >
               <div className={styles.optionTitle}><h3 className={styles.h3}>{func.title}</h3></div>
               <div className={styles.optionImage} style={{backgroundImage: `url('${func.smallImage}')`}}></div>
             </div>

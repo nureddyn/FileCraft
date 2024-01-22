@@ -3,19 +3,19 @@
 } */
 
 .groupList {
-    border: solid black 1px;
-    height: 20em;
+    /* border: solid black 1px; */
+    height: 15em;
 }
 
 .group {
-    border: solid purple 1px;
+    /* border: solid purple 1px; */
     height: 100%;
 }
 
 .itemList {
     display: flex;
     justify-content: flex-start;
-    border: solid blue 1px;
+    /* border: solid blue 1px; */
     height: 100%;
     width: 100%;
 }
@@ -32,11 +32,11 @@
     background-repeat: no-repeat;
 }
 
-.deleteButton {
-    border: solid black 1px;
+.deleteButton, .continueButton {
     cursor: pointer;
+    border-radius: 50px;
 }
 
-.deleteButton:hover {
+.deleteButton:hover, .continueButton:hover {
     background: #4ABDAC;
 }
