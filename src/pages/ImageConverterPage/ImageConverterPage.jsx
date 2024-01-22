@@ -34,10 +34,21 @@ export default function FunctionPage() {
       const response = await usersService.generateCraft(inputFile, craftType, convertTo);
       console.log(response);
       // console.log(response.convertedImage.data);
-      const responseData = response.convertedImage.data;
+      const responseData = response.convertedFile.content.data;
       const base64String = usersService.arrayBufferToBase64(responseData);
 
       resultImageRef.current.src = `data:image/${convertTo};base64,` + base64String;
+
+
+      const uint8Array = new Uint8Array(responseData);
+      const link = document.createElement('a');
+      const blob = new Blob([uint8Array], { type: `image/${convertTo}` });
+      link.href = URL.createObjectURL(blob);
+      link.download = `converted.${convertTo}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      alert(response.message);
 
     } else if (inputFile && convertTo && convertTo === fileType) {
       alert("Cannot convert to the same type of file");

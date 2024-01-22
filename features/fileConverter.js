@@ -28,7 +28,7 @@ async function imageConverter(file, convertTo) {
       .toFormat(convertTo)
       .toBuffer();
     
-    return convertedBuffer;
+    return {content: convertedBuffer, type: convertTo};
 };
 
 const DocumentOptions = ["doc", "docx", "pdf"];

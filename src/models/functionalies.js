@@ -1,26 +1,26 @@
 const functionalities = [
     {
         "title": "Image Converter",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "description": "🌈 Transform your images effortlessly with our Image Converter! Convert between various formats like JPEG, PNG, GIF, and more. Experience seamless image conversion with just a click!",
         "properties": ["Lorem ipsum dolor sit amet consectetur adipisicing elit:", "Lorem", "ipsum", "dolor sit"],
         "smallImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/80/f8/35/80f83550-7760-c503-7741-73108262fe91/PhotoConvert-85-220-0-4-2x.png/1200x630bb.png",
     },
     {
         "title": "Image Filters",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "description": "📸 Elevate your photos to a new level with our Image Filter! Add a touch of creativity and uniqueness to your pictures. Transform ordinary photos into extraordinary masterpieces with ease!",
         "properties": ["Lorem ipsum dolor sit amet consectetur adipisicing elit:", "Lorem", "ipsum", "dolor sit"],
-        "smallImage": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHM0OYfiFeMI2p9MWie0CvL99U4GA1gf6_kayTt_kBblFwHwo8BW8JXlqfnYxKPmmBVjhztzwXMAacm.U6Gh6FbTdKno_AWAdUS_X8IqgF4zOVnYwdMdlsFBm1.Sx_J6SI3ho2YYUEYvNHJwG9O42i0k-&format=source&h=464",
+        "smallImage": "https://png.pngtree.com/png-clipart/20210404/original/pngtree-cartoon-color-camera-icon-flowers-png-image_6194074.png",
     },
     {
         "title": "Document Converter",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "description": "📂 Need to convert documents hassle-free? Our Document Converter is your solution! Effortlessly switch between PDFs and Word.",
         "properties": ["Lorem ipsum dolor sit amet consectetur adipisicing elit:", "Lorem", "ipsum", "dolor sit"],
         "smallImage": "https://cdn1.iconfinder.com/data/icons/internet-12/256/23-512.png",
     },
     {
         "title": "File Sharing",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        "properties": ["Lorem ipsum dolor sit amet consectetur adipisicing elit:", "Lorem", "ipsum", "dolor sit"],
+        "description": "🚀 Experience lightning-fast and secure file sharing with our platform! Share files of any size with colleagues, friends, or family effortlessly.",
+        "properties": ["Enjoy the convenience", "of real-time collaboration and ensure your data is protected with our robust security features. Simplify sharing, amplify efficiency!"],
         "smallImage": "https://cdn-icons-png.flaticon.com/512/3059/3059130.png",
     }
 ]
