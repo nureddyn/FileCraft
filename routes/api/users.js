@@ -16,6 +16,9 @@ router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
 router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 
+router.post('/photo', usersCtrl.getPhoto);
+router.post('/photo/change', usersCtrl.changePhoto);
+
 // Perform function
 router.post('/craft', usersCtrl.craft);
 

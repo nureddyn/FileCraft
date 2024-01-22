@@ -1,6 +1,6 @@
 import styles from './NavBar.module.css';
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../pages/App/App';
 import DropDownButton from '../DropDown/DropDownButton';
 import ThemeButton from '../ThemeButton/ThemeButton';
@@ -25,19 +25,24 @@ export default function NavBar({ user, setUser }) {
   };
 
   const [photoData, setPhotoData] = useState('');
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const decodedToken = JSON.parse(atob(token.split('.')[1]));
-    const userPhotoData = decodedToken.user.photo.data;
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   const decodedToken = JSON.parse(atob(token.split('.')[1]));
+  //   const userPhotoData = decodedToken.user.photo.data;
 
-    // Convert the binary image data to a Data URL
-    if (userPhotoData && userPhotoData.data) {
-      const uint8Array = new Uint8Array(userPhotoData.data);
-      const blob = new Blob([uint8Array], { type: userPhotoData.contentType });
-      const dataUrl = URL.createObjectURL(blob);
-      setPhotoData(dataUrl);
-    }
-  }, [])
+  //   // Convert the binary image data to a Data URL
+  //   if (userPhotoData && userPhotoData.data) {
+  //     const uint8Array = new Uint8Array(userPhotoData.data);
+  //     const blob = new Blob([uint8Array], { type: userPhotoData.contentType });
+  //     const dataUrl = URL.createObjectURL(blob);
+  //     setPhotoData(dataUrl);
+  //   }
+  // }, [])
+
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate('/account');
+  }
 
   return (
     <div className={theme === "light" ? styles.headerLight : styles.headerDark}>
@@ -54,9 +59,11 @@ export default function NavBar({ user, setUser }) {
         <DropDownButton user={user && user} isOpen={isDropdownOpen} open={openModal} close={closeModal}  />
         {isDropdownOpen
           ? <div className={styles.dropdown}>
-              <div style={{backgroundImage: `url(${photoData})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat'}} className={styles.dropdownPhoto}></div>
+              <div
+              style={{backgroundImage: photoData && `url(${photoData})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat'}}
+              className={styles.dropdownPhoto}></div>
               <label className={styles.dropdownLabel} htmlFor="options">{user && user.name}</label>
-              <button className={styles.dropdownButton}>Manage Account</button>
+              <button onClick={handleNavigate} className={styles.dropdownButton}>Manage Account</button>
               <p className={styles.logoutButton} onClick={handleLogOut}>Log Out</p>
               <p>Change Mode</p>
               <ThemeButton theme={theme} setTheme={setTheme} />

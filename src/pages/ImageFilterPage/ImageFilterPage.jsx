@@ -116,6 +116,7 @@ export default function ImageFilterPage() {
       if (!imageId) { 
         response = await usersService.saveImage(imageToSend, userId);
         response && response.data && setImageId(response.data._id);
+        console.log(response);
       } else {
         response = await usersService.saveImage(imageToSend, userId, imageId);
       }

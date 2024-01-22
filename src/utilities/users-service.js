@@ -37,6 +37,17 @@ export async function login(userData) {
   return getUser();
 }
 
+export async function getPhoto(userId) {
+  const userPhoto = await usersAPI.getPhoto(userId);
+  localStorage.setItem('userPhoto', userPhoto);
+  return;
+}
+
+export async function changePhoto(userId, photo) {
+  const userPhoto = await usersAPI.changePhoto(userId, photo);
+  return userPhoto;
+}
+
 export function getToken() {
   // getItem returns null if there's no string
   const token = localStorage.getItem('token');

@@ -1,0 +1,54 @@
+.main {
+    display: flex;
+    border: solid black 1px;
+    height: 20em;
+}
+.sideBar {
+    border: solid black 1px;
+}
+
+.options {
+    border: solid purple 1px;
+}
+
+.optionLight.active {
+    background-color: #4ABDAC;
+}
+
+.optionDark.active {
+    background-color: #4257A2;
+}
+
+.optionLight, .optionDark {
+    cursor: pointer;
+    font-weight: 600;
+    width: 70%;
+    margin-left: 22%;
+    margin-bottom: 10%;
+    border-radius: 50px;
+}
+.optionLight:hover {
+    background: #4ABDAC;
+}
+
+.optionDark:hover {
+    background: #4257A2;
+}
+
+.showedOption {
+    border: solid black 1px;
+    width: 60%;
+}
+
+/* .optionTitle {} */
+
+.photoDiv {
+    border:solid black 1px;
+    width: 30%;
+}
+.photo {
+    border: solid green 1px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80%;
+}

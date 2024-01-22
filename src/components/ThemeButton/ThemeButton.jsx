@@ -8,13 +8,12 @@ export default function ThemeButton({theme, setTheme}) {
       <div className={styles.themeButtonContainer}>
         <p>Light</p>
         <div
+        onClick={() => bodyColor(theme, setTheme)}
         className={theme === "light"
         ? styles.switchButtonLeft
         : styles.switchButtonRight}
         >
-          <div className={styles.switchLever}
-            onClick={() => bodyColor(theme, setTheme)}
-          ></div>
+          <div className={styles.switchLever}></div>
         </div>
         <p>Dark</p>
       </div>

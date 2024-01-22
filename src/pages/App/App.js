@@ -14,7 +14,7 @@ import FileSharingPage from '../FileSharingPage/FileSharingPage';
 import MyCraftsPage from '../MyCraftsPage/MyCraftsPage';
 import DocumentConverterPage from '../DocumentConverterPage/DocumentConverterPage';
 
-import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
+import ManageAccountPage from '../ManageAccountPage/ManageAccountPage';
 import NavBar from '../../components/NavBar/NavBar';
 
 export const ThemeContext = createContext();
@@ -41,7 +41,7 @@ function App() {
 
               <Route path="/functions/FileSharing" element={<FileSharingPage />} />
 
-              <Route path="/orders" element={<OrderHistoryPage />} />
+              <Route path="/account" element={<ManageAccountPage />} />
               <Route path="/*" element={<Navigate to="/functions" />} />
             </Routes>
           </>

@@ -4,10 +4,13 @@ const Image = require('../../models/image');
 const DocFile = require('../../models/docFile');
 const bcrypt = require('bcrypt');
 const fileConverter = require('../../features/fileConverter');
+const sharp = require('sharp');
 
 module.exports = {
     create,
     login,
+    getPhoto,
+    changePhoto,
     checkToken,
     craft,
     saveFile,
@@ -16,7 +19,7 @@ module.exports = {
 };
 
 function createJWT(user) {
-  const { _id, name, email, photo } = user;
+  const { _id, name, email } = user;
 
   return jwt.sign(
     // data payload
@@ -25,10 +28,10 @@ function createJWT(user) {
         _id,
         name,
         email,
-        photo: {
-          data: photo.data,
-          contentType: photo.contentType
-        }
+        // photo: {
+        //   data: photo.data,
+        //   contentType: photo.contentType
+        // }
       }
     },
     process.env.SECRET,
@@ -173,6 +176,7 @@ async function create(req, res) {
   }
 }
 
+// TODO: check if changing this, an fetch the user image from other function
 async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -185,6 +189,45 @@ async function login(req, res) {
   }
 }
 
+async function getPhoto(req, res) {
+  // console.log(req.body);
+  try {
+    const userId = req.body.userId;
+    const document = await User.findById(userId);
+    console.log(document);
+
+  } catch {
+    res.status(400).json('Error');
+  }
+}
+
+async function changePhoto(req, res) {
+  try {
+    const userId = req.body.userId;
+    const photo = req.files.photo;
+
+    // Resize and compress the image before updating
+    const resizedBuffer = await sharp(photo.data)
+      .resize({ width: 500, height: 300 }) // Adjust width and height as needed
+      .toBuffer();
+
+    const newPhoto = await User.findByIdAndUpdate(
+      userId,
+      {
+        photo: {
+          data: resizedBuffer,
+          contentType: photo.mimetype
+        },
+      },
+      {new: true}
+    );
+    // console.log(newPhoto);
+    res.json(newPhoto);
+  } catch {
+    res.status(400).json('Error trying to save the data');
+  }
+
+}
 
 async function checkToken(req, res) {
   // req.user will always be there for you when a token is sent

@@ -35,6 +35,19 @@ export function signUp(userData) {
   return sendRequest(BASE_URL, 'POST', userData);
 }
 
+export function getPhoto(userId) {
+  const formData = new FormData();
+  formData.append('userId', userId);
+  return sendRequest(`${BASE_URL}/photo`, 'POST', formData);
+}
+
+export async function changePhoto(userId, photo) {
+  const formData = new FormData();
+  formData.append('userId', userId);
+  formData.append('photo', photo);
+  return sendRequest(`${BASE_URL}/photo/change`, 'POST', formData);
+}
+
 export function login(credentials) {
   return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
 }

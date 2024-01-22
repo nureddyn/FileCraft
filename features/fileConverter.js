@@ -15,7 +15,6 @@ module.exports = {
 
 const craftFunctions = {
     'ImageConverter': imageConverter,
-    // 'ImageFilters': imageFilters,
     'DocumentConverter': documentConverter,
     // 'FileSharing': fileSharing,
 }
@@ -74,7 +73,7 @@ async function documentConverter(file, convertTo) {
       // Return the DOCX content
       return { content: docBuffer, type: 'docx', extension: 'docx' };
 
-    } 
+    } // Fix this
     // else if (convertTo === 'pdf' &&
     //   file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
 
