@@ -8,6 +8,7 @@ import * as userService from '../../utilities/users-service';
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
+    localStorage.removeItem("userPhoto");
     // Delegate to the users-service
     userService.logOut();
     // Update state will also cause a re-render

@@ -24,7 +24,13 @@ export default function LoginForm({ setUser }) {
       const user = await usersService.login(credentials);
       setUser(user);
       const userId = usersService.getUser()._id;
-      await usersService.getPhoto(userId);
+      const response = await usersService.getPhoto(userId);
+
+      console.log(response);
+      const imageBase64 = usersService.arrayBufferToBase64(response.data.data);
+
+      localStorage.setItem("userPhoto", `data:${response.contentType};base64,${imageBase64}`);
+      window.location.reload();
     } catch {
       setError('Log In Failed - Try Again');
     }

@@ -35,6 +35,7 @@ export default function ManageAccountPage() {
       if (response) {
         try {
           const imageBase64 = usersService.arrayBufferToBase64(response.photo.data.data);
+          console.log(response);
           setProfilePhoto(`data:${response.photo.contentType};base64,${imageBase64}`);
           localStorage.setItem('userPhoto', `data:${response.photo.contentType};base64,${imageBase64}`);
           window.location.reload()
