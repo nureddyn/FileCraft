@@ -10,7 +10,6 @@ export default function ManageAccountPage() {
     alert(expDate);
   };
 
-  // console.log(usersService.getUser());
   
   const [theme, setTheme] = useContext(ThemeContext);
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
@@ -28,12 +27,11 @@ export default function ManageAccountPage() {
   async function handleSubmit() {
     // To change profile photo
     if (inputRef.current.type === 'file') {
-      // alert("changing photo")
       const userId = usersService.getUser()._id;
       const photo = inputRef.current.files[0];
       
       const response = await usersService.changePhoto(userId, photo);
-      // console.log(response);
+
       if (response) {
         try {
           const imageBase64 = usersService.arrayBufferToBase64(response.photo.data.data);

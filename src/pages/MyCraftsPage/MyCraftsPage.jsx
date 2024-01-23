@@ -13,17 +13,12 @@ export default function MyCraftsPage() {
         const userId = parsedData.user._id;
 
         const filesData = await usersService.getFiles(userId);
-        console.log(filesData);
 
         if (filesData) {
-          // filesData.images.map((image) => {
-          //   console.log(image.imageData.data.data);
-          // })
           const processedImages = filesData.images.map((image) => ({
             ...image,
             imageData: `data:${image.imageData.contentType};base64,${usersService.arrayBufferToBase64(image.imageData.data.data)}`,
           }));
-          // console.log(processedImages);
           
           const processedDocuments = filesData.docs.map((doc) => ({
             ...doc,

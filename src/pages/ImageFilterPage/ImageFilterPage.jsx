@@ -38,16 +38,6 @@ export default function ImageFilterPage() {
     currentPage === pageType.fileSelector && fileRef.current.value
     ? setCurrentPage(pageType.fileEditor)
     : setCurrentPage(pageType.fileSelector);
-
-    // Trying to delete previous reviewImage
-    // if (currentPage === pageType.fileSelector && fileRef.current.value) {
-    //   setCurrentPage(pageType.fileEditor)
-    // } else {
-    //   setCurrentPage(pageType.fileSelector);
-    //   if (previewRef && previewRef.current && previewRef.current.style) {
-    //     previewRef.current.style.backgroundImage = 'none';
-    //   } 
-    // }
   };
 
   // Functionality to add filters
@@ -72,7 +62,7 @@ export default function ImageFilterPage() {
   };
 
   const [imageId, setImageId] = useState();
-  // TODO: Save image in db
+  // Save image in db
   async function handleSave() {
     if (imagePreview) {
       const canvas = document.createElement('canvas');
@@ -116,7 +106,6 @@ export default function ImageFilterPage() {
       if (!imageId) { 
         response = await usersService.saveImage(imageToSend, userId);
         response && response.data && setImageId(response.data._id);
-        console.log(response);
       } else {
         response = await usersService.saveImage(imageToSend, userId, imageId);
       }

@@ -54,12 +54,6 @@ export default function AuthPage({ setUser }) {
       </>
       : <div className={styles.learnMore}>
         <div className={styles.learnMoreHeader}>
-          {/* <h3
-            className={styles.learnMoreButton}
-            onClick={handlePage}
-          >
-            &#x2190; Done
-          </h3> */}
           <div className={styles.presentation}>
             <h1 className={styles.h1}>What you can do with Filecraft</h1>
             <Presentation handlePage={handlePage}/>

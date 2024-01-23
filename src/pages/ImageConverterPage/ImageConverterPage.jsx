@@ -28,12 +28,10 @@ export default function FunctionPage() {
   async function handleFunction() {
     if (inputFile && convertTo && convertTo !== fileType) {
       const craftType = title.split(" ").join("");
-      // console.log(craftType);
 
       // Send image to be converted in server side 
       const response = await usersService.generateCraft(inputFile, craftType, convertTo);
-      console.log(response);
-      // console.log(response.convertedImage.data);
+
       const responseData = response.convertedFile.content.data;
       const base64String = usersService.arrayBufferToBase64(responseData);
 

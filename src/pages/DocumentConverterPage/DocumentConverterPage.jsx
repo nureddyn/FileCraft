@@ -29,7 +29,6 @@ export default function DocumentConverterPage() {
       let subString = str.slice(index + 1);
 
       setFileType(subString);
-      console.log(fileType);
     } else {
         event.target.value = '';
         alert("Document type not allowed");
@@ -42,16 +41,13 @@ export default function DocumentConverterPage() {
   async function handleFunction() {
     if (inputFile && convertTo && convertTo !== fileType && options.includes(fileType)) {
       const craftType = title.split(" ").join("");
-      // console.log(craftType);
-      // console.log(convertTo);
 
       // Send image to be converted in server side 
       const response = await usersService.generateCraft(inputFile, craftType, convertTo);
 
       messageRef.current.innerHTML = response.message;
-      // console.log(response);
+
       const responseData = response.convertedFile.content.data;
-      // console.log(responseData);
 
       const uint8Array = new Uint8Array(responseData);
 
@@ -77,7 +73,6 @@ export default function DocumentConverterPage() {
         link.click();
         document.body.removeChild(link);
       }
-      // const base64String = usersService.arrayBufferToBase64(responseData);
 
       resultImageRef.current.innerHTML = '📄';
 
@@ -122,14 +117,6 @@ export default function DocumentConverterPage() {
           {/* Display result based on the function result */}
           <h1 className={styles.resultImg} ref={resultImageRef}></h1>
           <h4 className={styles.message} ref={messageRef}></h4>
-          {
-            // <button 
-            //   className={styles.saveButton}
-            //   // onClick={handleSave}
-            // >
-            //   Save Changes
-            // </button>
-          }
         </div>
 
       </main>
