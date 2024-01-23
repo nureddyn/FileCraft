@@ -1,14 +1,14 @@
 const functionalities = [
     {
         "title": "Image Converter",
-        "description": "🌈 Transform your images effortlessly with our Image Converter! Convert between various formats like JPEG, PNG, GIF, and more. Experience seamless image conversion with just a click!",
-        "properties": ["Lorem ipsum dolor sit amet consectetur adipisicing elit:", "Lorem", "ipsum", "dolor sit"],
+        "description": "🌈 Transform your images effortlessly with our Image Converter! Convert between various formats like JPEG, PNG, GIF, and more.",
+        "properties": ["Experience seamless image conversion with just a click!"],
         "smallImage": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/80/f8/35/80f83550-7760-c503-7741-73108262fe91/PhotoConvert-85-220-0-4-2x.png/1200x630bb.png",
     },
     {
         "title": "Image Filters",
-        "description": "📸 Elevate your photos to a new level with our Image Filter! Add a touch of creativity and uniqueness to your pictures. Transform ordinary photos into extraordinary masterpieces with ease!",
-        "properties": ["Lorem ipsum dolor sit amet consectetur adipisicing elit:", "Lorem", "ipsum", "dolor sit"],
+        "description": "📸 Elevate your photos to a new level with our Image Filter! Add a touch of creativity and uniqueness to your pictures.",
+        "properties": ["Transform ordinary photos into extraordinary masterpieces with ease!"],
         "smallImage": "https://png.pngtree.com/png-clipart/20210404/original/pngtree-cartoon-color-camera-icon-flowers-png-image_6194074.png",
     },
     {

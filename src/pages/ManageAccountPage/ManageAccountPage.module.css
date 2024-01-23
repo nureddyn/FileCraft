@@ -1,4 +1,11 @@
-    .main {
+.containerLight {
+    color: black;
+}
+.containerDark {
+    color: white;
+}
+
+.main {
     display: flex;
     /* border: solid black 1px; */
     height: 20em;
@@ -26,6 +33,7 @@
     margin-left: 22%;
     margin-bottom: 10%;
     border-radius: 50px;
+    padding: 3%;
 }
 .optionLight:hover {
     background: #4ABDAC;
@@ -43,13 +51,11 @@
 /* .optionTitle {} */
 
 .photoDiv {
-    border:solid black 1px;
     width: 60%;
 }
 
 @media screen and (max-width: 519px) {
     .photoDiv {
-        /* border:solid black 1px; */
         width: 100%;
     }   
 }
@@ -60,5 +66,4 @@
     background-position: center center; /* Center the background image */
     height: 50%;
     width: 100%;
-    border:solid black 1px;
 }

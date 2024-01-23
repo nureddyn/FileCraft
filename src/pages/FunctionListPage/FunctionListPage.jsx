@@ -10,7 +10,7 @@ export default function FunctionListPage() {
   const [functionality, setFunctionality] = useState();
   const navigate = useNavigate();
 
-  let func;
+
   const handleChange = (e, i) => {
     setSelectedOptionIndex(i);
 
@@ -30,15 +30,15 @@ export default function FunctionListPage() {
 
   return (
     <main className={theme === "light" ? styles.mainLight : styles.mainDark}>
-      <div className={styles.function}>
+      <div className={theme === "light" ? styles.functionLight : styles.functionDark}>
         <div className={styles.functionTitleDiv}>
           {/* TODO: Display title dynamically */}
           <h1 className={styles.h1}>{functionality && functionality.title}</h1>
           <p>{functionality && functionality.description}</p>
           {functionality &&
-            <div
+            <h3
             className={theme === "light" ? styles.startButtonLight : styles.startButtonDark}
-            onClick={() => toFunctionPage()}>Start &#x2192;</div>
+            onClick={() => toFunctionPage()}>Start &#x2192;</h3>
           }  
         </div>
         <div

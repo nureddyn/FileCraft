@@ -13,12 +13,19 @@
     color: white;
 }
 
-.function {
+.functionLight, .functionDark {
     display: flex;
-    /* border: solid purple 1px; */
     width: 80%;
-    /* padding: 5%; */
     left: 0;
+    border-radius: 50px;
+}
+.functionLight {
+    background-image: url('../../static/colorful-abstract.jpg');
+}
+.functionDark {
+    background-image: url('https://i0.wp.com/backgroundabstract.com/wp-content/uploads/edd/2021/10/abstract-waveforms-digital-art-wallpaper-preview-e1656154495627.jpg?fit=728%2C455&ssl=1');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .functionTitleDiv {
@@ -86,7 +93,6 @@
 
 .optionImage {
     display: flex;
-    border-left: solid black 1px;
     width: 21%;
     background-size: contain;
     background-repeat: no-repeat;

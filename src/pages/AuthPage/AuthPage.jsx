@@ -2,6 +2,7 @@ import styles from './AuthPage.module.css';
 import React, { useState } from 'react';
 import SignUpForm from '../../components/SignUpForm';
 import LoginForm from '../../components/LogInForm/LoginForm'
+import Presentation from '../../components/Presentation/Presentation';
 
 export default function AuthPage({ setUser }) {
   const [authType, setAuthType] = useState('sign-up');
@@ -53,13 +54,16 @@ export default function AuthPage({ setUser }) {
       </>
       : <div className={styles.learnMore}>
         <div className={styles.learnMoreHeader}>
-          <h3
+          {/* <h3
             className={styles.learnMoreButton}
             onClick={handlePage}
           >
             &#x2190; Done
-          </h3>
-          <h1 className={styles.h1}>What you can do with Filecraft</h1>
+          </h3> */}
+          <div className={styles.presentation}>
+            <h1 className={styles.h1}>What you can do with Filecraft</h1>
+            <Presentation handlePage={handlePage}/>
+          </div>
         </div>
         </div>
       }

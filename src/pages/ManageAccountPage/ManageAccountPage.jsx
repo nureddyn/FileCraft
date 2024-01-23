@@ -56,7 +56,7 @@ export default function ManageAccountPage() {
   }
   
   return (
-    <>
+    <div className={theme === 'light' ? styles.containerLight : styles.containerDark}>
       <h1>Manage Account</h1>
       <div className={styles.main}>
         <div className={styles.sideBar}>
@@ -106,6 +106,6 @@ export default function ManageAccountPage() {
           <h3>{usersService.getUser().name}</h3>
         </div>
       </div>
-    </>
+    </div>
   )
 }

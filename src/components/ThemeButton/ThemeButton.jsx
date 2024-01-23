@@ -1,6 +1,7 @@
 import styles from './ThemeButton.module.css';
 import { bodyColor } from "../../utilities/color-theme";
-
+import { useContext } from 'react';
+import { ThemeContext } from '../../pages/App/App';
 export default function ThemeButton({theme, setTheme}) {
   // const [theme, setTheme] = useContext(ThemeContext);
 
