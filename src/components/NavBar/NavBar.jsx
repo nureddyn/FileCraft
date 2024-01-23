@@ -24,20 +24,7 @@ export default function NavBar({ user, setUser }) {
     setIsDropdownOpen(false);
   };
 
-  const [photoData, setPhotoData] = useState('');
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   const decodedToken = JSON.parse(atob(token.split('.')[1]));
-  //   const userPhotoData = decodedToken.user.photo.data;
-
-  //   // Convert the binary image data to a Data URL
-  //   if (userPhotoData && userPhotoData.data) {
-  //     const uint8Array = new Uint8Array(userPhotoData.data);
-  //     const blob = new Blob([uint8Array], { type: userPhotoData.contentType });
-  //     const dataUrl = URL.createObjectURL(blob);
-  //     setPhotoData(dataUrl);
-  //   }
-  // }, [])
+  const [photoData, setPhotoData] = useState(localStorage.getItem('userPhoto'));
 
   const navigate = useNavigate();
   const handleNavigate = () => {

@@ -194,8 +194,9 @@ async function getPhoto(req, res) {
   try {
     const userId = req.body.userId;
     const document = await User.findById(userId);
-    console.log(document);
+    const userPhoto = document.photo;
 
+    res.json(userPhoto);
   } catch {
     res.status(400).json('Error');
   }
@@ -208,7 +209,7 @@ async function changePhoto(req, res) {
 
     // Resize and compress the image before updating
     const resizedBuffer = await sharp(photo.data)
-      .resize({ width: 500, height: 300 }) // Adjust width and height as needed
+      .resize({ width: 500, height: 300 })
       .toBuffer();
 
     const newPhoto = await User.findByIdAndUpdate(

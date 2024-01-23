@@ -1,14 +1,14 @@
-.main {
+    .main {
     display: flex;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     height: 20em;
 }
-.sideBar {
+/* .sideBar {
     border: solid black 1px;
-}
+} */
 
 .options {
-    border: solid purple 1px;
+    border: solid black 2px;
 }
 
 .optionLight.active {
@@ -36,7 +36,7 @@
 }
 
 .showedOption {
-    border: solid black 1px;
+    /* border: solid black 1px; */
     width: 60%;
 }
 
@@ -44,11 +44,21 @@
 
 .photoDiv {
     border:solid black 1px;
-    width: 30%;
+    width: 60%;
 }
+
+@media screen and (max-width: 519px) {
+    .photoDiv {
+        /* border:solid black 1px; */
+        width: 100%;
+    }   
+}
+
 .photo {
-    border: solid green 1px;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    height: 80%;
+    background-position: center center; /* Center the background image */
+    height: 50%;
+    width: 100%;
+    border:solid black 1px;
 }

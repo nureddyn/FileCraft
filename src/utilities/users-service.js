@@ -39,8 +39,7 @@ export async function login(userData) {
 
 export async function getPhoto(userId) {
   const userPhoto = await usersAPI.getPhoto(userId);
-  localStorage.setItem('userPhoto', userPhoto);
-  return;
+  return userPhoto;
 }
 
 export async function changePhoto(userId, photo) {

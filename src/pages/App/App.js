@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import { useThemeHandler } from '../../utilities/color-theme';
@@ -17,18 +17,25 @@ import DocumentConverterPage from '../DocumentConverterPage/DocumentConverterPag
 import ManageAccountPage from '../ManageAccountPage/ManageAccountPage';
 import NavBar from '../../components/NavBar/NavBar';
 
+import * as usersService from '../../utilities/users-service';
+
 export const ThemeContext = createContext();
 
 function App() {
   const [user, setUser] = useState(getUser());
   const [theme, setTheme] = useThemeHandler();
+  const [userPhoto, setUserPhoto] = useState();
+
+  useEffect(() => {
+    setUserPhoto(user && usersService.getPhoto(user._id));
+  }, []);
 
   return (
     <main className="App">
       <ThemeContext.Provider value={[theme, setTheme]}>
         { user ?
           <>
-            <NavBar user={user} setUser={setUser} />
+            <NavBar user={user} setUser={setUser} userPhoto={userPhoto} />
             <h1>App</h1>
             <Routes>
               <Route path="/functions" element={<FunctionListPage />} />

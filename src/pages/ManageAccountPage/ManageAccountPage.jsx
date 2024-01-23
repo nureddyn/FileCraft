@@ -23,9 +23,7 @@ export default function ManageAccountPage() {
 
   const inputRef = useRef(null);
 
-  // Get the current from the current one:
-  // usersService.getPhoto()
-  const [profilePhoto, setProfilePhoto] = useState();
+  const [profilePhoto, setProfilePhoto] = useState(localStorage.getItem('userPhoto'));
 
   async function handleSubmit() {
     // To change profile photo
@@ -40,7 +38,8 @@ export default function ManageAccountPage() {
         try {
           const imageBase64 = usersService.arrayBufferToBase64(response.photo.data.data);
           setProfilePhoto(`data:${response.photo.contentType};base64,${imageBase64}`);
-          localStorage.setItem('userPhoto', imageBase64);
+          localStorage.setItem('userPhoto', `data:${response.photo.contentType};base64,${imageBase64}`);
+          window.location.reload()
         } catch (error) {
           console.error('Error converting image:', error);
         }
