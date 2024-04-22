@@ -1,18 +1,26 @@
 import styles from './DropDownButton.module.css';
 import React from 'react';
-import { useState, useEffect } from "react";
-import { ThemeContext } from '../../pages/App/App';
+import { useState, useEffect, forwardRef } from "react";
 
-export default function DropDown({ isOpen, open, close, user }) {
+const DropDown = forwardRef(({ isOpen, open, close, user }, ref) => {
   useEffect(() => {
-    const handleEscKey = (event) => {
+    const handleCloseDropdown = (event) => {
       if (event.key === 'Escape') close();
     };
+
+    const handleOutboundClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        close();
+      }
+    }
+
     if (isOpen) {
-      document.addEventListener('keydown', handleEscKey);
+      document.addEventListener('keydown', handleCloseDropdown);
+      document.addEventListener('click', handleOutboundClick);
     };
     return () => {
-      document.removeEventListener('keydown', handleEscKey);
+      document.removeEventListener('keydown', handleCloseDropdown);
+      document.removeEventListener('click', handleOutboundClick);
     };
   }, [isOpen, close]);
 
@@ -23,4 +31,6 @@ export default function DropDown({ isOpen, open, close, user }) {
       {user && user.name} ▾
     </div>
   )
-}
+})
+
+export default DropDown;

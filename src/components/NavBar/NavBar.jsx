@@ -1,5 +1,5 @@
 import styles from './NavBar.module.css';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../pages/App/App';
 import DropDownButton from '../DropDown/DropDownButton';
@@ -32,6 +32,7 @@ export default function NavBar({ user, setUser }) {
     navigate('/account');
   }
 
+  const dropdownRef = useRef();
   return (
     <div className={theme === "light" ? styles.headerLight : styles.headerDark}>
       <div className={styles.logo}>
@@ -43,8 +44,8 @@ export default function NavBar({ user, setUser }) {
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/saved'}>My crafts</Link>
         <Link className={theme === 'light' ? styles.headerLinkLight : styles.headerLinkDark} to={'/orders/new'}>Profile</Link>
       </div>
-      <div className={styles.dropdownContainer}>
-        <DropDownButton user={user && user} isOpen={isDropdownOpen} open={openModal} close={closeModal}  />
+      <div ref={dropdownRef} className={styles.dropdownContainer}>
+        <DropDownButton ref={dropdownRef} user={user && user} isOpen={isDropdownOpen} open={openModal} close={closeModal}  />
         {isDropdownOpen
           ? <div className={styles.dropdown}>
               <div
