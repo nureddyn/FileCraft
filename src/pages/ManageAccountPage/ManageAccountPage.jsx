@@ -26,7 +26,10 @@ export default function ManageAccountPage() {
 
   async function handleSubmit() {
     // To change profile photo
-    if (inputRef.current.type === 'file') {
+    if (!inputRef.current.value || !inputRef.current.files[0].type.startsWith('image/')) {
+      alert("Must provide valid image file");
+    }
+    else if (inputRef.current.type === 'file') {
       const userId = usersService.getUser()._id;
       const photo = inputRef.current.files[0];
       
